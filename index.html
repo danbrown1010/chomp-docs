@@ -481,6 +481,8 @@ mark { background: #fff3ea; padding: 0 2px; border-radius: 2px; color: inherit; 
   <div class="nav-section">
     <div class="nav-section-label">Project</div>
     <a class="nav-item" onclick="showPage('architecture')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">schema</span>Architecture</a>
+    <a class="nav-item" onclick="showPage('users')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">manage_accounts</span>Users & Identity</a>
+    <a class="nav-item" onclick="showPage('pets')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">pets</span>Pet Care</a>
     <a class="nav-item" onclick="showPage('community')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">group</span>Community</a>
   </div>
 </nav>
@@ -510,9 +512,9 @@ mark { background: #fff3ea; padding: 0 2px; border-radius: 2px; color: inherit; 
   </div>
 
   <div class="stat-grid">
-    <div class="stat-card"><div class="stat-num">33</div><div class="stat-label">Total features</div></div>
-    <div class="stat-card"><div class="stat-num">14</div><div class="stat-label">P1 core</div></div>
-    <div class="stat-card"><div class="stat-num">5</div><div class="stat-label">Feature sections</div></div>
+    <div class="stat-card"><div class="stat-num">42</div><div class="stat-label">Total features</div></div>
+    <div class="stat-card"><div class="stat-num">19</div><div class="stat-label">P1 core</div></div>
+    <div class="stat-card"><div class="stat-num">7</div><div class="stat-label">Feature sections</div></div>
     <div class="stat-card"><div class="stat-num">🟢</div><div class="stat-label">Offline-first</div></div>
   </div>
 
@@ -657,7 +659,7 @@ mark { background: #fff3ea; padding: 0 2px; border-radius: 2px; color: inherit; 
 
   <div class="feature"><div class="feature-header"><div class="feature-title">Burn Ban Status by County</div><div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span></div></div><p class="feature-desc">County-level burn restriction status from WA DNR and AirNow. Cached with timestamp. Also surfaced in Trip Planning pre-departure card.</p></div>
 
-  <div class="feature"><div class="feature-header"><div class="feature-title">AQI & Smoke Forecast Layer</div><div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-on">⚪ On-grid</span></div></div><p class="feature-desc">Air quality index and smoke plume overlay. AQI &lt;100: clear shooting conditions. AQI 100–150: haze visible in footage. AQI &gt;150: fly Air 2s with caution — particulates may affect gimbal sensors.</p></div>
+  <div class="feature"><div class="feature-header"><div class="feature-title">AQI & Smoke Forecast Layer</div><div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-on">⚪ On-grid</span></div></div><p class="feature-desc">Air quality index and smoke plume overlay. AQI &lt;100: clear shooting conditions for all rigs. AQI 100–150: haze visible in footage — affects D850, D70s, and aerial. AQI &gt;150: fly Air 2s with caution, Wolfbox dash cam footage quality degraded.</p></div>
 
   <div class="feature"><div class="feature-header"><div class="feature-title">Escape Route Planner</div><div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-both">🟢 Both</span></div></div><p class="feature-desc">Pre-download alternate exit GPX routes from each campsite. Surfaces fastest paved exit in one tap. Best practice: download two exit routes per camp in different directions — PNW single-canyon access roads can be cut off quickly.</p></div>
 
@@ -684,11 +686,14 @@ mark { background: #fff3ea; padding: 0 2px; border-radius: 2px; color: inherit; 
   </div>
 
   <div class="feature"><div class="feature-header"><div class="feature-title">Camera Kit Tracker</div><div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span></div></div>
-    <p class="feature-desc">Pre-shoot checklist per rig. Tracks batteries, SD cards, and rig-specific notes.</p>
-    <div class="table-wrap" style="margin-top:12px;"><table><thead><tr><th>Rig</th><th>Batteries</th><th>Cards</th></tr></thead><tbody>
-      <tr><td>Nikon D850</td><td>EN-EL15c ×2</td><td>CFexpress + XQD</td></tr>
-      <tr><td>DJI Air 2s</td><td>Intelligent Flight ×3</td><td>microSD</td></tr>
-      <tr><td>Insta360 Ace Pro 2</td><td>1800mAh ×2</td><td>microSD</td></tr>
+    <p class="feature-desc">Pre-shoot checklist per rig. Tracks batteries, SD cards, and rig-specific notes. Each user maintains their own kit profile.</p>
+    <div class="table-wrap" style="margin-top:12px;"><table><thead><tr><th>Rig</th><th>Type</th><th>Batteries</th><th>Storage</th></tr></thead><tbody>
+      <tr><td>Nikon D850</td><td>DSLR</td><td>EN-EL15c ×2</td><td>CFexpress + XQD</td></tr>
+      <tr><td>Nikon D70s</td><td>DSLR</td><td>EN-EL3e ×2</td><td>CompactFlash</td></tr>
+      <tr><td>DJI Air 2s</td><td>Drone</td><td>Intelligent Flight ×3</td><td>microSD</td></tr>
+      <tr><td>Insta360 Ace Pro 2</td><td>Action</td><td>1800mAh ×2</td><td>microSD</td></tr>
+      <tr><td>Wolfbox G850 Pro 4K</td><td>Dash cam</td><td>Hardwired / capacitor</td><td>microSD (loop)</td></tr>
+      <tr><td>iPhone 17 Pro (×2)</td><td>Mobile</td><td>Built-in (check %)</td><td>iCloud / local</td></tr>
     </tbody></table></div>
   </div>
 
@@ -755,12 +760,12 @@ After:   Spare → LF → RF → RR → LR</pre>
 <!-- MEDIA -->
 <div class="page" id="page-media">
   <h1>Media Logging</h1>
-  <p class="page-subtitle">Shot logging, drone records, and post-trip media sync for D850, Air 2s, and Insta360 Ace Pro 2.</p>
+  <p class="page-subtitle">Shot logging, drone records, and post-trip media sync for D850, D70s, Air 2s, Insta360 Ace Pro 2, Wolfbox G850 Pro, and iPhone 17 Pros.</p>
 
   <div class="feature"><div class="feature-header"><div class="feature-title">Shot Log with GPS + Gear Tag</div><div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-off">🔵 Off-grid</span></div></div>
     <p class="feature-desc">Log a shot in 3 taps: select rig, tag subject, auto-save with GPS + timestamp. No photo upload — pure metadata. Matches to Lightroom catalog by timestamp post-trip.</p>
     <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
-      <li>Rigs: D850 / Air 2s / Insta360</li>
+      <li>Rigs: D850 / D70s / Air 2s / Insta360 / Wolfbox / iPhone 17 Pro</li>
       <li>Subjects: landscape, wildlife, camp, vehicle, people</li>
       <li>Optional: focal length, lighting conditions, notes</li>
     </ul>
@@ -821,7 +826,168 @@ After:   Spare → LF → RF → RR → LR</pre>
   → Community website (Docusaurus / GitHub Pages)</pre>
 </div>
 
-<!-- COMMUNITY -->
+<!-- USERS & IDENTITY -->
+<div class="page" id="page-users">
+  <h1>Users & Identity</h1>
+  <p class="page-subtitle">Authentication, profiles, and multi-tenant architecture. Designed for two users today, built to scale to a community tomorrow.</p>
+
+  <div class="callout"><strong>Current scope:</strong> Two users (Dan + wife) signing in with Gmail. Architecture designed for multi-tenant from day one so community rollout requires no re-engineering.</div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Google OAuth Sign-In</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-on">⚪ On-grid</span></div>
+    </div>
+    <p class="feature-desc">Sign in with Google (Gmail identity). No passwords to manage. OAuth 2.0 via Firebase Auth or Supabase Auth — both support Google provider out of the box. Session persists offline after initial auth.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>Initial sign-in requires network connection</li>
+      <li>Session token cached locally — stays signed in off-grid</li>
+      <li>Token refresh happens automatically on reconnect</li>
+      <li>Sign-out clears local session and cached data</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">User Profiles</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span></div>
+    </div>
+    <p class="feature-desc">Each user has a profile with display name, avatar (from Google), preferred units, and their own camera kit configuration. Settings and checklists are per-user by default but can be shared within a household.</p>
+    <div class="table-wrap" style="margin-top:12px;"><table><thead><tr><th>Field</th><th>Source</th><th>Editable</th></tr></thead><tbody>
+      <tr><td>Display name</td><td>Google account</td><td>Yes</td></tr>
+      <tr><td>Avatar</td><td>Google account</td><td>Yes</td></tr>
+      <tr><td>Email</td><td>Google account</td><td>No</td></tr>
+      <tr><td>Units (metric/imperial)</td><td>App preference</td><td>Yes</td></tr>
+      <tr><td>Camera kit</td><td>App preference</td><td>Yes</td></tr>
+      <tr><td>Notification preferences</td><td>App preference</td><td>Yes</td></tr>
+    </tbody></table></div>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Household / Group</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span></div>
+    </div>
+    <p class="feature-desc">Users belong to a household group. Shared data (trip plans, vehicle maintenance log, gear lists) is scoped to the household. Personal data (shot logs, camera kit) is scoped to the individual. The household is the base multi-tenant unit.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>Current household: Dan + wife (2 users, 1 household)</li>
+      <li>Household owner can invite members via email</li>
+      <li>Shared data syncs across all household members</li>
+      <li>Role: Owner / Member (owner manages invites and billing)</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Multi-Tenant Architecture</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-both">🟢 Both</span></div>
+    </div>
+    <p class="feature-desc">All data is scoped to a tenant ID from day one. A tenant is a household in the personal version, or an overlanding group / club in the community version. This means zero re-architecture is needed to roll Chomp out to the broader community — just enable tenant creation.</p>
+    <div class="table-wrap" style="margin-top:12px;"><table><thead><tr><th>Scope</th><th>Today</th><th>Community rollout</th></tr></thead><tbody>
+      <tr><td>Tenant</td><td>1 household</td><td>Many groups / clubs</td></tr>
+      <tr><td>Users per tenant</td><td>2</td><td>Unlimited</td></tr>
+      <tr><td>Auth</td><td>Google OAuth</td><td>Google + Apple + email</td></tr>
+      <tr><td>Data isolation</td><td>Row-level by tenant_id</td><td>Same — already enforced</td></tr>
+      <tr><td>Billing</td><td>None</td><td>Per-tenant subscription</td></tr>
+    </tbody></table></div>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Offline Identity</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-off">🔵 Off-grid</span></div>
+    </div>
+    <p class="feature-desc">Once authenticated, the app works fully offline. User identity is cached locally. All writes are queued and synced on reconnect. If two users edit the same record offline, last-write-wins with a conflict log for review on reconnect.</p>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Community Profiles</div>
+      <div class="feature-badges"><span class="priority-p3">P3 — Nice to Have</span><span class="conn-on">⚪ On-grid</span></div>
+    </div>
+    <p class="feature-desc">Optional public profile for community members: display name, rig description, home region, trail reports contributed. Opt-in only — private by default. Enables community trail report attribution and reputation.</p>
+  </div>
+</div>
+
+<!-- PET CARE -->
+<div class="page" id="page-pets">
+  <h1>Pet Care</h1>
+  <p class="page-subtitle">Optional module for overlanders travelling with pets. Activate per-user in profile settings.</p>
+
+  <div class="callout"><strong>Optional module:</strong> Hidden by default. Enable under Profile → My Pets. Adds a Pets tab to the main nav and surfaces pet-relevant reminders in trip planning.</div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Pet Profiles</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span></div>
+    </div>
+    <p class="feature-desc">Register each pet with name, species, breed, age, weight, and photo. Supports multiple pets per household. Profile feeds into packing suggestions, vet record storage, and trip planning reminders.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>Name, species, breed, age, weight</li>
+      <li>Microchip number (useful if lost in remote areas)</li>
+      <li>Emergency vet contact</li>
+      <li>Special needs / medications</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Pet Pack List</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span></div>
+    </div>
+    <p class="feature-desc">Dedicated checklist for pet gear. Merges into the main gear packing workflow. Templates per pet type (dog, cat). Fully offline.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>Food and water (calculated by days × daily amount)</li>
+      <li>Collapsible bowls, leash, harness, ID tags</li>
+      <li>Bedding and crate (if applicable)</li>
+      <li>Medications and first aid (tick remover, wound care)</li>
+      <li>Waste bags, towels, paw protection</li>
+      <li>Vaccination records (digital copy)</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Food & Water Calculator</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-off">🔵 Off-grid</span></div>
+    </div>
+    <p class="feature-desc">Enter trip duration and number of pets. Calculates total food and water needed with a configurable safety buffer. Integrates with the main Water & Food Supply tracker so you're planning for the whole crew in one place.</p>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Vet & Health Records</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-both">🟢 Both</span></div>
+    </div>
+    <p class="feature-desc">Store vaccination records, medication schedules, and vet contact details per pet. Surfaces medication reminders during trip. Digital copy of rabies certificate useful at some campgrounds and border crossings.</p>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Pet-Safe Trail Flags</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-both">🟢 Both</span></div>
+    </div>
+    <p class="feature-desc">Flag waypoints and campsites as pet-friendly or hazardous. Hazard types: wildlife activity (bears, cougars, porcupines), toxic plants, extreme heat exposure, trail difficulty. Community-contributed, synced pre-trip.</p>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Heat & Safety Alerts</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-both">🟢 Both</span></div>
+    </div>
+    <p class="feature-desc">Alerts when ambient temperature exceeds safe thresholds for pets left in the vehicle (even briefly). Uses weather forecast data pre-trip and device sensor data on-trip. Configurable per pet species and size.</p>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Nearest Emergency Vet</div>
+      <div class="feature-badges"><span class="priority-p3">P3 — Nice to Have</span><span class="conn-on">⚪ On-grid</span></div>
+    </div>
+    <p class="feature-desc">One-tap lookup of nearest emergency veterinary clinic from current GPS position. Pre-cache the closest options for the trip area before departure. Includes after-hours emergency lines.</p>
+  </div>
+</div>
+
+
 <div class="page" id="page-community">
   <h1>Community</h1>
   <p class="page-subtitle">Trail knowledge from the PNW overlanding community.</p>
@@ -869,7 +1035,7 @@ Submitted by: [Username]</pre>
 </main>
 
 <script>
-const pages = ['home','trip','safety','gear','maintenance','media','architecture','community'];
+const pages = ['home','trip','safety','gear','maintenance','media','architecture','users','pets','community'];
 
 function showPage(id) {
   pages.forEach(p => {
@@ -912,6 +1078,17 @@ const index = [
   {page:'media', title:'Post-Trip Media Sync', section:'Media Logging', text:'Lightroom sync NAS SMB catalog metadata timestamps'},
   {page:'architecture', title:'Offline Storage Strategy', section:'Architecture', text:'cache API IndexedDB map tiles offline first PWA storage'},
   {page:'architecture', title:'Home Assistant Integration', section:'Architecture', text:'HA webhook departure return home automation'},
+  {page:'users', title:'Google OAuth Sign-In', section:'Users & Identity', text:'google gmail login auth signin oauth identity account'},
+  {page:'users', title:'User Profiles', section:'Users & Identity', text:'profile avatar name units camera kit preferences'},
+  {page:'users', title:'Household / Group', section:'Users & Identity', text:'household group shared data invite members family'},
+  {page:'users', title:'Multi-Tenant Architecture', section:'Users & Identity', text:'multi tenant community rollout groups clubs data isolation billing'},
+  {page:'users', title:'Offline Identity', section:'Users & Identity', text:'offline auth cached session sync conflict'},
+  {page:'pets', title:'Pet Profiles', section:'Pet Care', text:'pet dog cat microchip vet emergency medications'},
+  {page:'pets', title:'Pet Pack List', section:'Pet Care', text:'pet gear food water bowls leash harness bedding medications'},
+  {page:'pets', title:'Food & Water Calculator', section:'Pet Care', text:'pet food water calculator trip duration supply'},
+  {page:'pets', title:'Pet-Safe Trail Flags', section:'Pet Care', text:'pet friendly trail hazard wildlife bear porcupine toxic plants'},
+  {page:'pets', title:'Heat & Safety Alerts', section:'Pet Care', text:'heat alert temperature pet vehicle safety'},
+  {page:'pets', title:'Nearest Emergency Vet', section:'Pet Care', text:'emergency vet veterinary clinic GPS nearest'},
   {page:'community', title:'Trail Report Template', section:'Community', text:'trail report condition campsite water signal PNW overlanding'},
 ];
 
