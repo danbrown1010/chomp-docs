@@ -485,6 +485,7 @@ mark { background: #fff3ea; padding: 0 2px; border-radius: 2px; color: inherit; 
     <a class="nav-item" onclick="showPage('maintenance')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">build</span>Vehicle Maintenance</a>
     <a class="nav-item" onclick="showPage('meals')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">restaurant</span>Meal Planning</a>
     <a class="nav-item" onclick="showPage('media')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">photo_camera</span>Media Logging</a>
+    <a class="nav-item" onclick="showPage('fishing')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">phishing</span>Fish &amp; Game</a>
   </div>
   <div class="nav-section">
     <div class="nav-section-label">Project</div>
@@ -492,6 +493,10 @@ mark { background: #fff3ea; padding: 0 2px; border-radius: 2px; color: inherit; 
     <a class="nav-item" onclick="showPage('users')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">manage_accounts</span>Users & Identity</a>
     <a class="nav-item" onclick="showPage('pets')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">pets</span>Pet Care</a>
     <a class="nav-item" onclick="showPage('social')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">share</span>Social Platforms</a>
+    <a class="nav-item" onclick="showPage('comms')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">cell_tower</span>Comms &amp; Network</a>
+    <a class="nav-item" onclick="showPage('docs')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">folder_shared</span>Travel Documents</a>
+    <a class="nav-item" onclick="showPage('knowledge')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">auto_stories</span>Knowledge Base</a>
+    <a class="nav-item" onclick="showPage('campbot')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">notifications_active</span>Campsite Bot</a>
     <a class="nav-item" onclick="showPage('monetization')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">sell</span>Free vs Paid</a>
     <a class="nav-item" onclick="showPage('community')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">group</span>Community</a>
   </div>
@@ -522,9 +527,9 @@ mark { background: #fff3ea; padding: 0 2px; border-radius: 2px; color: inherit; 
   </div>
 
   <div class="stat-grid">
-    <div class="stat-card"><div class="stat-num">57</div><div class="stat-label">Total features</div></div>
+    <div class="stat-card"><div class="stat-num">93</div><div class="stat-label">Total features</div></div>
     <div class="stat-card"><div class="stat-num">22</div><div class="stat-label">P1 core</div></div>
-    <div class="stat-card"><div class="stat-num">11</div><div class="stat-label">Feature sections</div></div>
+    <div class="stat-card"><div class="stat-num">16</div><div class="stat-label">Feature sections</div></div>
     <div class="stat-card"><div class="stat-num" style="color:var(--ember);font-size:20px;padding-top:4px">FREE · PRO · TEAM</div><div class="stat-label">Pricing tiers</div></div>
   </div>
 
@@ -1127,6 +1132,739 @@ After:   Spare → LF → RF → RR → LR</pre>
 </div>
 
 
+<div class="page" id="page-social">
+  <h1>Social Platforms</h1>
+  <p class="page-subtitle">Optional integrations with Slack, Discord, Instagram, Facebook, and more. All opt-in, all configurable per user.</p>
+
+  <div class="callout"><strong>Privacy first:</strong> No social data is collected without explicit opt-in. Each integration is independently enabled. Chomp never posts automatically — every share requires user confirmation.</div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Instagram</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-on">⚪ On-grid</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">Share trip highlight cards, shot log summaries, and location scouting photos directly to Instagram. Auto-generates story-format cards from GPS tracks and shot metadata. Hashtag suggestions based on location and rig.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>Trip summary card — map overlay + best shot thumbnails → Instagram story or post</li>
+      <li>Gear shot template — pre-formatted rig photo card with build details</li>
+      <li>Trail condition update — quick share for the community</li>
+      <li>Auto-suggested hashtags: #overlanding #jeeplife #PNWadventure and location-based tags</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Facebook</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-on">⚪ On-grid</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">Post trip reports and trail conditions to Facebook Groups (Jeep clubs, PNW overlanding groups, regional 4x4 communities). Share to your personal timeline or directly to groups you manage. Integration uses Facebook Graph API — requires one-time auth.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>Post to groups: Jeep JK/JL Owners, PNW Overland, Washington Trails 4x4</li>
+      <li>Trip report format: route summary + conditions + photos + GPX attachment</li>
+      <li>Event creation: organize group runs from within Chomp</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Discord</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-on">⚪ On-grid</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">Connect Chomp to your Discord server or overlanding community channels. Post trip updates, fire alerts, and trail conditions as rich embeds. Ideal for club group chats and expedition coordination.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>Webhook integration — no bot install required, just a webhook URL</li>
+      <li>Trip departure / return notifications to a channel</li>
+      <li>Fire alert relay — push active fire perimeter updates to #trail-conditions</li>
+      <li>Trip report embed with map thumbnail, stats, and highlights</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Slack</div>
+      <div class="feature-badges"><span class="priority-p3">P3 — Nice to Have</span><span class="conn-on">⚪ On-grid</span><span class="tier-team">TEAM</span></div>
+    </div>
+    <p class="feature-desc">Primarily useful for clubs or fleet operators — post expedition updates to a Slack workspace. Webhook-based, same pattern as Discord. Most relevant for the Team tier where groups manage multiple vehicles.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>Slash command: <code>/chomp status</code> returns current trip status</li>
+      <li>Vehicle maintenance alerts to a fleet management channel</li>
+      <li>Trip departure and safe-return confirmations</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">iOverlander &amp; Trail Communities</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-on">⚪ On-grid</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">Publish campsite reviews and trail condition reports directly from Chomp to iOverlander and compatible open-source trail databases. One-tap submit from the waypoint planner — your Chomp notes become community knowledge.</p>
+  </div>
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">OnX Offroad</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">Deep integration with OnX Offroad — the industry standard for offroad trail maps in North America. Import your OnX saved routes, waypoints, and trail ratings directly into Chomp's trip planner. Keep both apps in sync without manual GPX export/import.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li><strong>Route import:</strong> Pull saved OnX routes into Chomp trip planner with one tap</li>
+      <li><strong>Waypoint sync:</strong> OnX saved points appear as Chomp waypoints with category mapping</li>
+      <li><strong>Trail ratings:</strong> OnX difficulty ratings (Easy / Moderate / Difficult / Expert) displayed on Chomp map overlay</li>
+      <li><strong>Gate &amp; closure data:</strong> OnX road closure and seasonal gate status overlaid on offline base map</li>
+      <li><strong>Land ownership layer:</strong> Public / private / BLM / NFS boundary overlay — critical for legal camping</li>
+      <li><strong>Offline sync:</strong> Downloaded OnX tiles complement Chomp's OsmAnd cache for maximum coverage</li>
+      <li><strong>Two-way export:</strong> Send Chomp waypoints back to OnX for users who prefer OnX as primary nav</li>
+    </ul>
+    <div class="callout" style="margin-top:12px;"><strong>Requires active OnX Offroad subscription.</strong> Chomp connects via OnX API — your OnX subscription is separate. Chomp does not replicate OnX map data; it bridges your OnX content into the Chomp workflow.</div>
+  </div>
+
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">YouTube Metadata Generator</div>
+      <div class="feature-badges"><span class="priority-p3">P3 — Nice to Have</span><span class="conn-on">⚪ On-grid</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">Generate a trip video description draft from your shot log, GPS track, and drone flight log. Includes suggested title, description with timestamps, hashtags, and chapter markers matched to GPS waypoints. Upload is manual — Chomp generates the metadata, you control the publish.</p>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Social Share Cards</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-on">⚪ On-grid</span><span class="tier-free">FREE</span></div>
+    </div>
+    <p class="feature-desc">Generate a static shareable image card from any trip — GPS track on map, key stats (miles, days, elevation), rig details, top shot thumbnails. Copy link or download image. Works with any platform. Free tier to drive organic growth.</p>
+  </div>
+</div>
+
+<div class="page" id="page-monetization">
+  <h1>Free vs Paid</h1>
+  <p class="page-subtitle">Three-tier freemium model. Real value at every level — paid tiers unlock AI, social, and community features.</p>
+
+  <div class="callout"><strong>Core principle:</strong> Safety features are always free. No overlander should hit a paywall when checking fire perimeters or evacuation zones.</div>
+
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin:24px 0;">
+    <div style="background:#fff;border:1px solid var(--border);border-radius:10px;padding:24px;">
+      <div style="font-family:'Ubuntu Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:0.1em;margin-bottom:8px;">TIER 1</div>
+      <div style="font-family:'Ubuntu',sans-serif;font-size:22px;font-weight:700;color:var(--forest);margin-bottom:4px;">Free</div>
+      <div style="font-size:13px;color:var(--muted);margin-bottom:16px;">Solo overlander. No card required.</div>
+      <div style="font-size:28px;font-weight:700;color:var(--forest);margin-bottom:16px;">$0<span style="font-size:13px;font-weight:400;color:var(--muted)">/mo</span></div>
+      <ul style="font-size:13px;color:#333;line-height:2.2;padding-left:16px;">
+        <li>1 vehicle profile</li>
+        <li>1 user</li>
+        <li>Offline maps (500MB)</li>
+        <li>All safety features</li>
+        <li>Trip planning &amp; GPS logging</li>
+        <li>Basic gear &amp; pack lists</li>
+        <li>Maintenance log (manual)</li>
+        <li>Camera kit tracker</li>
+        <li>Shot log &amp; drone log</li>
+        <li>Social share cards</li>
+      </ul>
+    </div>
+
+    <div style="background:#fff;border:2px solid var(--ember);border-radius:10px;padding:24px;position:relative;">
+      <div style="position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--ember);color:#fff;font-family:'Ubuntu Mono',monospace;font-size:10px;padding:3px 12px;border-radius:20px;white-space:nowrap;">MOST POPULAR</div>
+      <div style="font-family:'Ubuntu Mono',monospace;font-size:10px;color:var(--ember);letter-spacing:0.1em;margin-bottom:8px;">TIER 2</div>
+      <div style="font-family:'Ubuntu',sans-serif;font-size:22px;font-weight:700;color:var(--forest);margin-bottom:4px;">Pro</div>
+      <div style="font-size:13px;color:var(--muted);margin-bottom:16px;">Household of 2. Power overlander.</div>
+      <div style="font-size:28px;font-weight:700;color:var(--ember);margin-bottom:16px;">$6<span style="font-size:13px;font-weight:400;color:var(--muted)">/mo</span></div>
+      <ul style="font-size:13px;color:#333;line-height:2.2;padding-left:16px;">
+        <li>Everything in Free</li>
+        <li>2 users (household)</li>
+        <li>3 vehicle profiles</li>
+        <li>Unlimited map cache</li>
+        <li>AI maintenance schedule</li>
+        <li>AI meal planning</li>
+        <li>Instagram, Facebook, Discord</li>
+        <li>iOverlander sync</li>
+        <li>Pet care module</li>
+        <li>Media sync (Lightroom / NAS)</li>
+        <li>Trip highlight reel builder</li>
+        <li>Home Assistant integration</li>
+        <li>Priority support</li>
+      </ul>
+    </div>
+
+    <div style="background:#111;border:1px solid #333;border-radius:10px;padding:24px;">
+      <div style="font-family:'Ubuntu Mono',monospace;font-size:10px;color:#f97316;letter-spacing:0.1em;margin-bottom:8px;">TIER 3</div>
+      <div style="font-family:'Ubuntu',sans-serif;font-size:22px;font-weight:700;color:#fff;margin-bottom:4px;">Team</div>
+      <div style="font-size:13px;color:#888;margin-bottom:16px;">Clubs, guides, fleet operators.</div>
+      <div style="font-size:28px;font-weight:700;color:#f97316;margin-bottom:16px;">$18<span style="font-size:13px;font-weight:400;color:#888">/mo</span></div>
+      <ul style="font-size:13px;color:#ccc;line-height:2.2;padding-left:16px;">
+        <li>Everything in Pro</li>
+        <li>Up to 20 users</li>
+        <li>Unlimited vehicles</li>
+        <li>Group management</li>
+        <li>Slack integration</li>
+        <li>Fleet maintenance dashboard</li>
+        <li>Private trail database</li>
+        <li>Custom branding</li>
+        <li>Admin &amp; user roles</li>
+        <li>API access</li>
+        <li>Dedicated support</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Feature Tier Map</h2>
+  <div class="table-wrap"><table><thead><tr><th>Feature</th><th>Section</th><th>Free</th><th>Pro</th><th>Team</th></tr></thead><tbody>
+    <tr><td>Fire perimeters &amp; evacuation zones</td><td>Safety</td><td>✓</td><td>✓</td><td>✓</td></tr>
+    <tr><td>Burn ban &amp; AQI</td><td>Safety</td><td>✓</td><td>✓</td><td>✓</td></tr>
+    <tr><td>Escape route planner</td><td>Safety</td><td>✓</td><td>✓</td><td>✓</td></tr>
+    <tr><td>Offline maps (500MB)</td><td>Trip Planning</td><td>✓</td><td>—</td><td>—</td></tr>
+    <tr><td>Offline maps (unlimited)</td><td>Trip Planning</td><td>—</td><td>✓</td><td>✓</td></tr>
+    <tr><td>Trip journal &amp; GPS logging</td><td>Trip Planning</td><td>✓</td><td>✓</td><td>✓</td></tr>
+    <tr><td>Campsite &amp; waypoint planner</td><td>Trip Planning</td><td>✓</td><td>✓</td><td>✓</td></tr>
+    <tr><td>Fuel &amp; range calculator</td><td>Trip Planning</td><td>✓</td><td>✓</td><td>✓</td></tr>
+    <tr><td>Home Assistant integration</td><td>Trip Planning</td><td>—</td><td>✓</td><td>✓</td></tr>
+    <tr><td>Gear &amp; pack lists</td><td>Gear</td><td>✓</td><td>✓</td><td>✓</td></tr>
+    <tr><td>Camera kit tracker</td><td>Gear</td><td>✓</td><td>✓</td><td>✓</td></tr>
+    <tr><td>Gear weight &amp; load ledger</td><td>Gear</td><td>—</td><td>✓</td><td>✓</td></tr>
+    <tr><td>Maintenance log (manual)</td><td>Maintenance</td><td>✓</td><td>✓</td><td>✓</td></tr>
+    <tr><td>AI maintenance schedule</td><td>Maintenance</td><td>—</td><td>✓</td><td>✓</td></tr>
+    <tr><td>Mod &amp; build registry</td><td>Maintenance</td><td>✓</td><td>✓</td><td>✓</td></tr>
+    <tr><td>Basic meal templates</td><td>Meals</td><td>✓</td><td>✓</td><td>✓</td></tr>
+    <tr><td>AI meal planning</td><td>Meals</td><td>—</td><td>✓</td><td>✓</td></tr>
+    <tr><td>Shot log &amp; drone flight log</td><td>Media</td><td>✓</td><td>✓</td><td>✓</td></tr>
+    <tr><td>Post-trip media sync</td><td>Media</td><td>—</td><td>✓</td><td>✓</td></tr>
+    <tr><td>Trip highlight reel</td><td>Media</td><td>—</td><td>✓</td><td>✓</td></tr>
+    <tr><td>Pet care module</td><td>Pets</td><td>—</td><td>✓</td><td>✓</td></tr>
+    <tr><td>Social share cards</td><td>Social</td><td>✓</td><td>✓</td><td>✓</td></tr>
+    <tr><td>Instagram / Facebook / Discord</td><td>Social</td><td>—</td><td>✓</td><td>✓</td></tr>
+    <tr><td>Slack integration</td><td>Social</td><td>—</td><td>—</td><td>✓</td></tr>
+    <tr><td>2 users (household)</td><td>Users</td><td>—</td><td>✓</td><td>✓</td></tr>
+    <tr><td>Up to 20 users (club/fleet)</td><td>Users</td><td>—</td><td>—</td><td>✓</td></tr>
+    <tr><td>API access</td><td>Platform</td><td>—</td><td>—</td><td>✓</td></tr>
+  </tbody></table></div>
+
+  <h2>Pricing rationale</h2>
+  <p>$6/mo Pro is deliberately low for early community adoption. At $6, even 500 paying users covers meaningful infrastructure costs and validates the market before raising prices. Team at $18 targets Jeep clubs, guided overlanding operators, and corporate off-road fleets. Annual pricing (2 months free) recommended at stable v1: $0 / $60/yr / $180/yr.</p>
+</div>
+
+<div class="page" id="page-comms">
+  <h1>Communications &amp; Network</h1>
+  <p class="page-subtitle">Manage your full connectivity stack — Starlink, cellular hotspots, Wi-Fi extenders, satellite communicators, and multi-carrier SIM strategy. Know what you have, what you're on, and what to switch to.</p>
+
+  <div class="callout"><strong>The overlanding comms problem:</strong> Most rigs run 3–5 connectivity devices with zero unified view. Chomp gives you a single dashboard for your entire network stack — on-grid and off-grid — so you always know your connectivity status and can switch intelligently.</div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Connectivity Profile</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span><span class="tier-free">FREE</span></div>
+    </div>
+    <p class="feature-desc">Register every device in your connectivity stack. Each device gets a profile with type, carrier/provider, coverage strengths, and typical use case. This becomes your reference when deciding what to bring on a given trip or what to switch to mid-trip.</p>
+    <div class="table-wrap" style="margin-top:12px;"><table><thead><tr><th>Device type</th><th>Examples</th><th>Best for</th></tr></thead><tbody>
+      <tr><td>Satellite internet</td><td>Starlink Flat High Performance, Starlink Mini</td><td>Remote base camp, consistent bandwidth</td></tr>
+      <tr><td>Cellular hotspot</td><td>T-Mobile 5G hotspot, Verizon Jetpack, AT&amp;T Nighthawk</td><td>Moving coverage, lower latency</td></tr>
+      <tr><td>Multi-carrier router</td><td>Peplink MAX BR1, GL.iNet Spitz AX</td><td>SIM failover, load balancing, in-rig Wi-Fi</td></tr>
+      <tr><td>Wi-Fi extender / booster</td><td>Alfa AWUS, WeBoost Drive Reach, SureCall Fusion2Go</td><td>Campground Wi-Fi, weak signal amplification</td></tr>
+      <tr><td>Satellite communicator</td><td>Garmin inReach Mini 2, SPOT X, Zoleo</td><td>Emergency SOS, 2-way messaging, no data plan needed</td></tr>
+      <tr><td>CB / Ham radio</td><td>Midland MXT275, Yaesu FT-65</td><td>Trail convoy comms, no infrastructure required</td></tr>
+    </tbody></table></div>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Starlink Integration</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">Connect to the Starlink API to monitor dish status, signal quality, obstruction map, and data usage from within Chomp. Automate dish deployment reminders at camp and stow reminders before departure.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li><strong>Status dashboard:</strong> Online / searching / obstructed / stowed — real-time from Starlink API</li>
+      <li><strong>Obstruction map:</strong> View sky obstruction percentage at current GPS location</li>
+      <li><strong>Data usage:</strong> Monthly usage vs. plan limit — warns before throttling</li>
+      <li><strong>Deployment checklist:</strong> Added to camp setup routine — deploy dish, aim, wait for lock</li>
+      <li><strong>Stow reminder:</strong> Pre-departure checklist item — stow dish before moving</li>
+      <li><strong>Coverage prediction:</strong> Before departing, check Starlink coverage for the planned route and camp area</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Cellular Coverage Planner</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">Before departure, map expected cellular coverage along your route and at your campsites for each carrier you subscribe to. Uses crowd-sourced coverage data (OpenCelliD, Ookla) and carrier maps. Helps decide which SIMs to prioritise and when to rely on Starlink vs cellular.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>Coverage overlay per carrier: T-Mobile / Verizon / AT&amp;T / FirstNet</li>
+      <li>Side-by-side comparison at key waypoints and camp locations</li>
+      <li>Dead zone flagging — segments of route with no cellular from any carrier</li>
+      <li>Coverage cached pre-trip for offline reference on the road</li>
+      <li><strong>PNW reality check:</strong> Much of the Cascades and Okanogan is T-Mobile dead — this helps you plan around it</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Active Connection Dashboard</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-both">🟢 Both</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">Real-time view of your active connectivity — what device is connected, signal strength, current speed, and data consumed this trip. Works by querying your Peplink / GL.iNet router API if present, or by passive device detection. Surfaces the best available connection automatically.</p>
+    <div class="table-wrap" style="margin-top:12px;"><table><thead><tr><th>Data point</th><th>Source</th></tr></thead><tbody>
+      <tr><td>Active WAN</td><td>Peplink / GL.iNet router API</td></tr>
+      <tr><td>Signal strength (cellular)</td><td>Router API / device sensor</td></tr>
+      <tr><td>Starlink status</td><td>Starlink API</td></tr>
+      <tr><td>Current download / upload</td><td>Router API / Speedtest</td></tr>
+      <tr><td>Data used this trip</td><td>Router API / manual log</td></tr>
+      <tr><td>Estimated data remaining</td><td>Plan limits from connectivity profile</td></tr>
+    </tbody></table></div>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Satellite Communicator Integration</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span><span class="tier-free">FREE</span></div>
+    </div>
+    <p class="feature-desc">Connect your Garmin inReach, SPOT, or Zoleo to Chomp for two-way messaging and GPS tracking that works with zero cellular or Starlink. Track points from inReach appear on the Chomp trip map. SOS capability is a device function — Chomp surfaces the SOS shortcut and logs the event.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li><strong>Garmin inReach Mini 2:</strong> MapShare tracking feed → Chomp trip map overlay</li>
+      <li><strong>SPOT X:</strong> Track feed import, OK check-in logging</li>
+      <li><strong>Zoleo:</strong> Message log sync, location history</li>
+      <li>Check-in reminders: configurable interval (e.g. every 4 hours off-grid)</li>
+      <li>Emergency contact list: stored in Chomp, auto-populated to device on trip start</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Hotspot &amp; SIM Manager</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-both">🟢 Both</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">Track all your data plans, SIM cards, and hotspot devices in one place. Never accidentally blow through a plan cap or forget to switch carriers when T-Mobile dies in the Cascades.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>Plan details per device: carrier, monthly data cap, throttle threshold, renewal date</li>
+      <li>Data usage tracking per trip — manual entry or router API pull</li>
+      <li>Low data warnings: alert at configurable % of plan used</li>
+      <li>Carrier switching recommendations based on coverage planner + current signal</li>
+      <li>Multi-SIM Peplink strategy: configure priority order per trip area</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Wi-Fi Extender &amp; Booster Manager</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-both">🟢 Both</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">Manage campground Wi-Fi and cellular booster devices. Log known campground Wi-Fi networks (SSID, password, quality) for return visits. Track WeBoost / SureCall booster placement tips per campsite — which direction to aim the antenna for best gain.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>Saved campground networks with signal quality rating</li>
+      <li>Booster placement notes per campsite (GPS-pinned)</li>
+      <li>Antenna direction recommendations based on nearest tower (from coverage map)</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">CB &amp; Ham Radio Log</div>
+      <div class="feature-badges"><span class="priority-p3">P3 — Nice to Have</span><span class="conn-both">🟢 Both</span><span class="tier-free">FREE</span></div>
+    </div>
+    <p class="feature-desc">Log CB channel assignments and Ham frequencies for convoy use. Store per-trip radio plans (channel 19 for highway, channel 4 for trail, local repeater frequencies). Reference card available offline — no signal needed when you need it most.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>CB channel plan per trip (convoy lead, sweep, camp)</li>
+      <li>Ham repeater directory for PNW (pre-loaded ARRL data for WA)</li>
+      <li>Call sign storage (your own and convoy members)</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Trip Connectivity Report</div>
+      <div class="feature-badges"><span class="priority-p3">P3 — Nice to Have</span><span class="conn-on">⚪ On-grid</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">Post-trip summary of connectivity performance — which devices were used, coverage gaps encountered, data consumed per carrier, and Starlink uptime. Shareable to the community to improve coverage maps for future trips on the same routes.</p>
+  </div>
+</div>
+
+<div class="page" id="page-fishing">
+  <h1>Fish &amp; Game</h1>
+  <p class="page-subtitle">Fishing gear tracking, licensing, regulations, catch logs, and hunting/wildlife records for overlanding trips in the Pacific Northwest.</p>
+
+  <div class="callout"><strong>Regulatory first:</strong> Fish &amp; Game regulations vary by county, watershed, season, and species. Chomp surfaces the applicable rules for your GPS location and caches them offline — because you won't have signal when a ranger asks.</div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">License &amp; Tag Wallet</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span><span class="tier-free">FREE</span></div>
+    </div>
+    <p class="feature-desc">Store digital copies of fishing licenses, hunting tags, discover passes, and conservation licenses. Organized by user and expiry date. Alerts before expiry so you never hit the water or field with a lapsed license.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>WA Fishing License (freshwater, saltwater, combination)</li>
+      <li>WA Hunting License + tags (deer, elk, bear, upland bird)</li>
+      <li>Federal Duck Stamp</li>
+      <li>Discover Pass / Northwest Forest Pass</li>
+      <li>Tribal access permits where applicable</li>
+      <li>Expiry alerts: 30-day and 7-day warnings per license</li>
+      <li>Image scan stored offline — show on phone to ranger</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Regulations by Location</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span><span class="tier-free">FREE</span></div>
+    </div>
+    <p class="feature-desc">Fetches current WDFW (Washington Dept of Fish &amp; Wildlife) regulations for fishing and hunting based on your GPS position or planned waypoint. Caches the applicable ruleset pre-trip for offline reference. Covers season dates, bag limits, size limits, gear restrictions, and closed areas.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li><strong>Fishing:</strong> Open/closed status, season dates, bag and size limits, bait restrictions (e.g. selective gear rules)</li>
+      <li><strong>Hunting:</strong> Season dates per species, weapon restrictions, unit boundaries</li>
+      <li><strong>Data source:</strong> WDFW API + ODFW (Oregon) — expandable to other state agencies</li>
+      <li>Regulation changes flagged when syncing — rules change mid-season in WA</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Fishing Gear Tracker</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span><span class="tier-free">FREE</span></div>
+    </div>
+    <p class="feature-desc">Catalog your fishing gear with condition notes and a pre-trip pack checklist. Tracks rods, reels, fly boxes, tackle, waders, and accessories per user. Integrates with the main gear pack list so fishing kit is included in the overall trip packing workflow.</p>
+    <div class="table-wrap" style="margin-top:12px;"><table><thead><tr><th>Category</th><th>Items tracked</th></tr></thead><tbody>
+      <tr><td>Rods &amp; reels</td><td>Length, weight, action, line weight, condition</td></tr>
+      <tr><td>Fly boxes</td><td>Contents by hatch type, season, water type</td></tr>
+      <tr><td>Terminal tackle</td><td>Hooks, weights, swivels, leaders — stock levels</td></tr>
+      <tr><td>Waders &amp; boots</td><td>Size, condition, boot sole type (felt restricted in some WA waters)</td></tr>
+      <tr><td>Net &amp; tools</td><td>Net size, hemostats, forceps, thermometer</td></tr>
+    </tbody></table></div>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Catch Log</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-off">🔵 Off-grid</span><span class="tier-free">FREE</span></div>
+    </div>
+    <p class="feature-desc">Log every catch with species, length, weight, GPS location, time, conditions, and gear used. Photo attachment optional. Builds a personal database of productive spots and patterns over time. Shareable to the community as anonymous heatmaps (location precision reduced for privacy).</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>Species, length, weight, catch/release status</li>
+      <li>GPS pin (precision configurable — exact or watershed-only for privacy)</li>
+      <li>Water conditions: temperature, clarity, flow, time of day</li>
+      <li>Gear used: rod, fly or lure, retrieve style</li>
+      <li>Photo attachment (metadata only stored — image stays on device)</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Hatch &amp; Conditions Calendar</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-both">🟢 Both</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">Regional hatch calendar for PNW fly fishing — shows likely active hatches by month and elevation for your planned trip area. Cross-references with current water temperature and flow data (USGS stream gauges) to predict fishing conditions before departure.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>Hatch calendar: Blue-winged Olive, Pale Morning Dun, Caddis, Skwala, Salmonfly by watershed</li>
+      <li>USGS stream gauge data: flow (CFS) and temperature for named rivers on your route</li>
+      <li>Condition rating: Poor / Fair / Good / Excellent — based on flow, temp, and season</li>
+      <li>All data cached pre-trip for offline reference</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Wildlife Sighting Log</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-off">🔵 Off-grid</span><span class="tier-free">FREE</span></div>
+    </div>
+    <p class="feature-desc">Log wildlife sightings with GPS, species, count, behavior, and photo. Contributes to community wildlife heatmaps (opt-in). Useful for photography planning on return trips and for reporting significant sightings to WDFW.</p>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Hunting Unit &amp; Access Planner</div>
+      <div class="feature-badges"><span class="priority-p3">P3 — Nice to Have</span><span class="conn-both">🟢 Both</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">Overlay WDFW hunting unit boundaries on the Chomp map. Mark glassing points, access roads, water sources, and camp locations per unit. Tag with weapon restriction and season dates. Integrates with the vehicle profile for weight planning when packing out game.</p>
+  </div>
+</div>
+
+<div class="page" id="page-docs">
+  <h1>Travel Documents</h1>
+  <p class="page-subtitle">Secure storage for critical travel information — insurance policies, emergency contacts, vehicle documents, medical information, and scanned backup documents.</p>
+
+  <div class="callout"><strong>Offline-critical:</strong> You need these documents most when you have no signal. Everything in this section is cached locally and encrypted on-device. No document content is ever uploaded to Chomp servers — storage is local only, with optional encrypted iCloud / Google Drive backup.</div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Insurance Vault</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-off">🔵 Off-grid</span><span class="tier-free">FREE</span></div>
+    </div>
+    <p class="feature-desc">Store all insurance policies relevant to overlanding — vehicle, overlanding-specific, medical evacuation, and trip cancellation. Each policy stored with policy number, insurer phone, coverage summary, and a scanned copy of the card or declaration page.</p>
+    <div class="table-wrap" style="margin-top:12px;"><table><thead><tr><th>Policy type</th><th>Key fields</th></tr></thead><tbody>
+      <tr><td>Vehicle insurance</td><td>Policy #, insurer, 24hr claims line, coverage summary</td></tr>
+      <tr><td>Overlanding / off-road rider</td><td>Off-pavement coverage limits, recovery coverage, equipment coverage</td></tr>
+      <tr><td>Medical evacuation</td><td>GEOS / Global Rescue / DAN membership #, activation number</td></tr>
+      <tr><td>Trip cancellation</td><td>Policy #, covered events, claim process</td></tr>
+      <tr><td>Roadside assistance</td><td>AAA / manufacturer / insurer plan, member #, call number</td></tr>
+    </tbody></table></div>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Vehicle &amp; Registration Documents</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-off">🔵 Off-grid</span><span class="tier-free">FREE</span></div>
+    </div>
+    <p class="feature-desc">Scanned copies of vehicle registration, title, and any special permits. Particularly useful when crossing state lines or accessing permitted land where paper documents are required but may be left at home.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>Vehicle registration (per vehicle in profile)</li>
+      <li>Title scan (for proof of ownership in remote areas)</li>
+      <li>OHV / USFS operating permit where required</li>
+      <li>Tow vehicle / trailer combination permits if applicable</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Emergency Contacts &amp; Medical Info</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-off">🔵 Off-grid</span><span class="tier-free">FREE</span></div>
+    </div>
+    <p class="feature-desc">Per-user emergency information card — the data first responders need when you can't communicate. Stored locally, accessible from the lock screen widget without unlocking the app.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>Emergency contacts (name, relationship, phone)</li>
+      <li>Blood type, allergies, current medications</li>
+      <li>Medical conditions relevant to emergency response</li>
+      <li>Health insurance card scan + member ID</li>
+      <li>Physician name and contact</li>
+      <li>Lock screen widget: tap to show emergency card without app unlock</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Trip Float Plan</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span><span class="tier-free">FREE</span></div>
+    </div>
+    <p class="feature-desc">A float plan is what search and rescue needs if you don't come back. Generate one from your trip data — route, campsites, vehicle description, party members, expected return — and share it with a trusted contact before departure. Auto-generates from trip planner data, requires one review before sending.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>Auto-populated from trip planner: route, waypoints, dates, party</li>
+      <li>Vehicle description pulled from vehicle profile</li>
+      <li>Emergency contacts pulled from user profiles</li>
+      <li>Share via SMS, email, or print to PDF</li>
+      <li>Check-in schedule embedded — tell your contact when to call SAR</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Document Scanner &amp; Vault</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-off">🔵 Off-grid</span><span class="tier-free">FREE</span></div>
+    </div>
+    <p class="feature-desc">Scan and store any document using the phone camera. OCR extracts key fields automatically (policy numbers, expiry dates, member IDs) for quick search. All documents encrypted at rest using device biometric key — Face ID / Touch ID required to view. Never uploaded to cloud without explicit user opt-in.</p>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Encrypted Cloud Backup</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-on">⚪ On-grid</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">Optional encrypted backup of the document vault to iCloud or Google Drive. End-to-end encrypted with a user-held key — Chomp never has access to the encrypted content. Restore on a new device using your key. Particularly useful if your phone is lost or damaged in a remote area.</p>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Permit &amp; Access Pass Manager</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-both">🟢 Both</span><span class="tier-free">FREE</span></div>
+    </div>
+    <p class="feature-desc">Track all recreation passes and permits in one place with expiry alerts. Integrates with the trip planner to flag required permits for planned routes before departure.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>Northwest Forest Pass, Discover Pass, America the Beautiful</li>
+      <li>Timed-entry permits (Recreation.gov reservations)</li>
+      <li>Fire permit (required in some USFS areas during fire season)</li>
+      <li>Expiry alerts and renewal links</li>
+    </ul>
+  </div>
+</div>
+
+<div class="page" id="page-knowledge">
+  <h1>Knowledge Base</h1>
+  <p class="page-subtitle">Upload manuals, spec sheets, help sites, and images to build a searchable AI knowledge repository. Ask questions in plain English and get answers sourced from your documents — like NotebookLM, but built for your rig.</p>
+
+  <div class="callout"><strong>Your personal RAG system:</strong> RAG (Retrieval-Augmented Generation) means the AI answers are grounded in your actual documents — not general internet knowledge. Ask "what torque spec for the front diff pinion nut on my JKU?" and get the answer from your Dana 44 service manual, not a forum guess.</div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Document Upload &amp; Indexing</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-on">⚪ On-grid</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">Upload any document to your Chomp knowledge base — PDFs, images, Word docs, text files, and web page captures. Documents are chunked, embedded, and indexed for semantic search. Once indexed, the knowledge base is available offline for search (new uploads require connectivity).</p>
+    <div class="table-wrap" style="margin-top:12px;"><table><thead><tr><th>Document type</th><th>Examples</th></tr></thead><tbody>
+      <tr><td>Vehicle manuals</td><td>JKU owner manual, Dana 44 service manual, NV241 transfer case manual</td></tr>
+      <tr><td>Gear manuals</td><td>Ursa Minor install guide, Starlink setup, Peplink router manual, WeBoost install</td></tr>
+      <tr><td>Camera manuals</td><td>D850 reference manual, Air 2s quick start, Insta360 Ace Pro 2 guide</td></tr>
+      <tr><td>Spec sheets</td><td>Suspension lift specs, skid plate torque values, tire load ratings</td></tr>
+      <tr><td>Trail guides</td><td>Scanned MVUM maps, printed trail guides, route descriptions</td></tr>
+      <tr><td>Help site captures</td><td>JKForum threads, Expedition Portal build threads, iOverlander tips</td></tr>
+      <tr><td>Images</td><td>Wiring diagrams, plumbing schematics, build photos with annotations</td></tr>
+    </tbody></table></div>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Natural Language Search</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">Ask questions in plain English against your uploaded documents. Answers include the source document and page reference so you can verify. Search index cached offline — works in the field without connectivity after initial indexing.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>"What is the oil capacity for my 3.6L Pentastar?"</li>
+      <li>"What are the torque specs for the Ursa Minor roof hinge bolts?"</li>
+      <li>"How do I reset the Peplink router to factory defaults?"</li>
+      <li>"What ND filter does the D850 use with the 24-70mm?"</li>
+      <li>"What is the maximum payload for the Ursa Minor?"</li>
+      <li>Answers cite the source document, section, and page number</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Web Page Capture</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-on">⚪ On-grid</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">Point Chomp at any URL and it captures, cleans, and indexes the content. Ideal for JKForum build threads, Expedition Portal gear reviews, manufacturer FAQs, and trail condition reports. Captured pages become part of your searchable knowledge base and are available offline.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>Paste any URL → Chomp fetches, strips ads/nav, extracts content</li>
+      <li>Works with forums, manufacturer sites, YouTube transcripts, Reddit threads</li>
+      <li>Re-capture on demand to get updated content</li>
+      <li>Tag captures by category (vehicle, gear, trail, camera)</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">NotebookLM Import</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-on">⚪ On-grid</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">Import existing Google NotebookLM notebooks into your Chomp knowledge base. If you have already organised research, build documentation, or trip notes in NotebookLM, bring them into Chomp where they can be queried alongside your other documents and accessed offline.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>Export from NotebookLM → import into Chomp in one step</li>
+      <li>Notebook sources (PDFs, URLs) re-indexed in Chomp</li>
+      <li>NotebookLM Audio Overviews preserved as audio files</li>
+      <li>Two-way: export Chomp knowledge base to NotebookLM format</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">AI Chat Against Documents</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-both">🟢 Both</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">Conversational interface against your full knowledge base. Unlike single-question search, chat maintains context across follow-up questions. Powered by Claude API with your documents as grounding context. Useful for troubleshooting a problem step-by-step referencing the service manual.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>"My transfer case is making a grinding noise. Walk me through diagnosis using the service manual."</li>
+      <li>"I want to set up the Peplink in SpeedFusion mode. What does the manual say and what settings do I need?"</li>
+      <li>Chat history saved per session — review previous diagnostic conversations</li>
+      <li>Offline mode: cached index answers simpler lookups without connectivity</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Collections &amp; Notebooks</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-both">🟢 Both</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">Organise uploaded documents into collections — Vehicle, Gear, Camera, Trails, Rules &amp; Regs. Query across all collections or scope to one. Share a collection with your household partner so both users can search the same knowledge base. Team tier allows sharing collections with the full group.</p>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Image &amp; Diagram Search</div>
+      <div class="feature-badges"><span class="priority-p3">P3 — Nice to Have</span><span class="conn-on">⚪ On-grid</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">Upload wiring diagrams, plumbing schematics, or annotated build photos. AI extracts text labels and component relationships from images so they become searchable. "Show me the wiring diagram for the aux battery" returns the relevant annotated image from your uploads.</p>
+  </div>
+</div>
+
+<div class="page" id="page-campbot">
+  <h1>Campsite Availability Bot</h1>
+  <p class="page-subtitle">Automated monitoring of campsite reservation systems — alerts you the moment a site becomes available so you can book before anyone else.</p>
+
+  <div class="callout"><strong>The problem this solves:</strong> Popular PNW campsites on Recreation.gov and Reserve America book out in minutes when they drop. The only way to get them is to be watching 24/7 or get lucky on a cancellation. Chomp's availability bot watches for you and fires an alert the instant a slot opens.</div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Reservation Site Monitor</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-on">⚪ On-grid</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">Add any campsite from a supported reservation system to your watch list. Specify your target dates, site preferences (back-in / pull-through, hookups, group site), and party size. The bot checks availability on a configurable schedule and alerts you immediately when a match appears.</p>
+    <div class="table-wrap" style="margin-top:12px;"><table><thead><tr><th>Platform</th><th>Coverage</th><th>Check frequency</th></tr></thead><tbody>
+      <tr><td>Recreation.gov</td><td>USFS, NPS, BLM — most federal lands</td><td>Every 5 minutes</td></tr>
+      <tr><td>Reserve America</td><td>WA State Parks, Oregon State Parks</td><td>Every 5 minutes</td></tr>
+      <tr><td>Hipcamp</td><td>Private land, farm camping, unique sites</td><td>Every 15 minutes</td></tr>
+      <tr><td>ReserveAmerica (CA)</td><td>California State Parks</td><td>Every 5 minutes</td></tr>
+      <tr><td>Custom URL</td><td>Any campsite with a bookable page</td><td>Configurable</td></tr>
+    </tbody></table></div>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Watch List &amp; Alerts</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-on">⚪ On-grid</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">Manage multiple active watches simultaneously — different campgrounds, different date ranges. When a match is found, push notification fires immediately with a deep link directly to the booking page. Alert also sent via SMS and email as backup in case you miss the push notification.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>Push notification with one-tap link to booking page</li>
+      <li>SMS backup alert (critical — push notifications can be delayed)</li>
+      <li>Email alert with site details and direct booking URL</li>
+      <li>Discord / Slack webhook option (Team tier) — alert your group channel</li>
+      <li>Alert window: configure quiet hours so you aren't woken at 3am</li>
+      <li>Auto-expire watch after target dates pass</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Flexible Date Matching</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-on">⚪ On-grid</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">Not locked to specific dates? Configure flexible matching — "any Friday–Sunday in July" or "any 3-consecutive-night window in August." Bot finds the first available match within your window and alerts you. Ideal when your schedule has flexibility but the campground doesn't.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>Exact dates: specific check-in / check-out</li>
+      <li>Flexible window: any N consecutive nights within a date range</li>
+      <li>Day-of-week filter: weekends only, weekdays only, or any</li>
+      <li>Minimum nights: e.g. "only alert if 3+ nights are available contiguously"</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Site Preferences &amp; Filters</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-on">⚪ On-grid</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">Filter alerts to only sites that match your rig and preferences — no point getting alerted for a tent-only site when you're running a Ursa Minor.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>Site type: back-in, pull-through, walk-in, group</li>
+      <li>Length limit: minimum site length for your rig + camper</li>
+      <li>Hookups: none (dry camping), electric, water, full hookup</li>
+      <li>Shade preference: sun / partial / full shade</li>
+      <li>River or lake access: waterfront or walk-to</li>
+      <li>Pet-friendly (auto-set if pet profiles are active)</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Campground Intelligence</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-on">⚪ On-grid</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">Community-sourced intel on when sites typically drop — cancellation patterns, booking window opening times, and seasonal availability trends. Chomp learns from community booking data to predict the best times to watch for a specific campground.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>"Sites at this campground typically cancel 2 days before arrival"</li>
+      <li>"Bookings for this campground open at 7am PST on the 6-month mark"</li>
+      <li>Booking window calendar: shows exactly when to be ready to book for target dates</li>
+      <li>Peak vs. shoulder season guidance per campground</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Custom URL Watcher</div>
+      <div class="feature-badges"><span class="priority-p3">P3 — Nice to Have</span><span class="conn-on">⚪ On-grid</span><span class="tier-team">TEAM</span></div>
+    </div>
+    <p class="feature-desc">Point the bot at any URL — not just known reservation systems. Monitors the page for content changes and alerts when specific text appears or disappears (e.g. "No availability" changes to a date option). Useful for private campgrounds, permit lotteries, and club-only booking pages.</p>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Booking History &amp; Favourites</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-both">🟢 Both</span><span class="tier-free">FREE</span></div>
+    </div>
+    <p class="feature-desc">Log past stays with ratings, condition notes, and photos. Favourite campgrounds resurface as suggested watch targets when planning future trips to the same area. Booking history integrates with the trip journal for a complete record of where you've been.</p>
+  </div>
+</div>
+
 <div class="page" id="page-community">
   <h1>Community</h1>
   <p class="page-subtitle">Trail knowledge from the PNW overlanding community.</p>
@@ -1174,7 +1912,7 @@ Submitted by: [Username]</pre>
 </main>
 
 <script>
-const pages = ['home','trip','safety','gear','maintenance','meals','media','architecture','users','pets','social','monetization','community'];
+const pages = ['home','trip','safety','gear','maintenance','meals','media','fishing','architecture','users','pets','social','monetization','comms','docs','knowledge','campbot','community'];
 
 function showPage(id) {
   pages.forEach(p => {
@@ -1247,6 +1985,35 @@ const index = [
   {page:'monetization', title:'Pro Tier', section:'Free vs Paid', text:'pro $6 household 2 users AI maintenance meals social media sharing'},
   {page:'monetization', title:'Team Tier', section:'Free vs Paid', text:'team $18 club fleet 20 users admin slack API branding'},
   {page:'monetization', title:'Feature Tier Map', section:'Free vs Paid', text:'free paid tier map features pricing comparison'},
+  {page:'social', title:'OnX Offroad Integration', section:'Social Platforms', text:'onx offroad trail maps routes waypoints difficulty ratings land ownership gate closures'},
+  {page:'comms', title:'Connectivity Profile', section:'Comms & Network', text:'starlink hotspot wifi extender cellular booster satellite communicator CB ham radio'},
+  {page:'comms', title:'Starlink Integration', section:'Comms & Network', text:'starlink API dish status obstruction map data usage deployment stow coverage'},
+  {page:'comms', title:'Cellular Coverage Planner', section:'Comms & Network', text:'cellular coverage map carriers T-Mobile Verizon AT&T dead zones PNW Cascades'},
+  {page:'comms', title:'Active Connection Dashboard', section:'Comms & Network', text:'Peplink GL.iNet router API signal strength speed data usage WAN'},
+  {page:'comms', title:'Satellite Communicator', section:'Comms & Network', text:'inReach SPOT Zoleo SOS check-in tracking emergency satellite messaging'},
+  {page:'comms', title:'Hotspot & SIM Manager', section:'Comms & Network', text:'hotspot SIM data plan cap carrier switching multi-SIM Peplink'},
+  {page:'comms', title:'CB & Ham Radio Log', section:'Comms & Network', text:'CB channel ham radio convoy repeater frequency call sign PNW'},
+  {page:'fishing', title:'License & Tag Wallet', section:'Fish & Game', text:'fishing license hunting tag discover pass WDFW expiry wallet'},
+  {page:'fishing', title:'Regulations by Location', section:'Fish & Game', text:'WDFW regulations fishing hunting season bag limit gear restriction GPS location'},
+  {page:'fishing', title:'Fishing Gear Tracker', section:'Fish & Game', text:'rod reel fly box waders tackle fishing gear checklist'},
+  {page:'fishing', title:'Catch Log', section:'Fish & Game', text:'catch log species GPS water conditions fly lure photo offline'},
+  {page:'fishing', title:'Hatch & Conditions Calendar', section:'Fish & Game', text:'hatch calendar PMD caddis skwala salmonfly USGS stream gauge flow temperature'},
+  {page:'fishing', title:'Wildlife Sighting Log', section:'Fish & Game', text:'wildlife sighting GPS species photo WDFW community heatmap'},
+  {page:'docs', title:'Insurance Vault', section:'Travel Documents', text:'insurance vehicle overlanding medical evacuation roadside policy number'},
+  {page:'docs', title:'Emergency Contacts & Medical', section:'Travel Documents', text:'emergency contact blood type allergies medications first responder lock screen'},
+  {page:'docs', title:'Trip Float Plan', section:'Travel Documents', text:'float plan search rescue route party vehicle return date SAR'},
+  {page:'docs', title:'Document Scanner & Vault', section:'Travel Documents', text:'document scan OCR encrypted biometric Face ID offline vault'},
+  {page:'docs', title:'Permit & Access Pass Manager', section:'Travel Documents', text:'Northwest Forest Pass Discover Pass America Beautiful Recreation.gov permit expiry'},
+  {page:'knowledge', title:'Document Upload & Indexing', section:'Knowledge Base', text:'upload manual PDF spec sheet index search RAG AI documents'},
+  {page:'knowledge', title:'Natural Language Search', section:'Knowledge Base', text:'natural language search torque spec oil capacity manual question answer'},
+  {page:'knowledge', title:'Web Page Capture', section:'Knowledge Base', text:'URL capture JKForum Expedition Portal web page index offline'},
+  {page:'knowledge', title:'NotebookLM Import', section:'Knowledge Base', text:'NotebookLM import notebook Google export two-way sync'},
+  {page:'knowledge', title:'AI Chat Against Documents', section:'Knowledge Base', text:'AI chat Claude RAG documents troubleshoot service manual conversational'},
+  {page:'campbot', title:'Reservation Site Monitor', section:'Campsite Bot', text:'Recreation.gov Reserve America campsite availability monitor watch bot'},
+  {page:'campbot', title:'Watch List & Alerts', section:'Campsite Bot', text:'push notification SMS email alert campsite booking cancellation'},
+  {page:'campbot', title:'Flexible Date Matching', section:'Campsite Bot', text:'flexible dates Friday Saturday any window consecutive nights filter'},
+  {page:'campbot', title:'Campground Intelligence', section:'Campsite Bot', text:'cancellation patterns booking window opening time peak season prediction'},
+  {page:'campbot', title:'Custom URL Watcher', section:'Campsite Bot', text:'custom URL monitor page change permit lottery private campground'},
   {page:'community', title:'Trail Report Template', section:'Community', text:'trail report condition campsite water signal PNW overlanding'},
 ];
 
