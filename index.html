@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chomp — Knowledge Base</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+<style>
+:root {
+  --forest: #111111;
+  --forest-mid: #1e1e1e;
+  --forest-light: #555555;
+  --moss: #f97316;
+  --sage: #d1d5db;
+  --cream: #f9f9f9;
+  --sand: #f0f0f0;
+  --ember: #f97316;
+  --amber: #fb923c;
+  --sky: #f97316;
+  --ink: #111111;
+  --muted: #6b7280;
+  --border: #e5e7eb;
+  --sidebar-w: 280px;
+}
+
+.ms {
+  font-family: 'Material Symbols Outlined';
+  font-weight: 300;
+  font-style: normal;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+  vertical-align: middle;
+}
+.ms-lg {
+  font-size: 28px;
+  font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 40;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Ubuntu', sans-serif;
+  background: var(--cream);
+  color: var(--ink);
+  min-height: 100vh;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* ── TOPBAR ── */
+.topbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: var(--forest);
+  height: 56px;
+  display: flex; align-items: center; gap: 16px;
+  padding: 0 20px;
+  border-bottom: 2px solid var(--forest-mid);
+}
+.topbar-logo {
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  color: var(--sage);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+.topbar-logo span { color: var(--moss); }
+.topbar-sub {
+  font-size: 12px;
+  color: var(--forest-light);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-search {
+  margin-left: auto;
+  display: flex; align-items: center; gap: 8px;
+  background: var(--forest-mid);
+  border: 1px solid var(--forest-light);
+  border-radius: 6px;
+  padding: 6px 12px;
+  min-width: 200px;
+}
+.topbar-search input {
+  background: none; border: none; outline: none;
+  color: var(--sage); font-family: 'Ubuntu', sans-serif;
+  font-size: 13px; width: 100%;
+}
+.topbar-search input::placeholder { color: var(--forest-light); }
+.menu-toggle {
+  display: none;
+  background: none; border: none; cursor: pointer;
+  color: var(--sage); padding: 4px;
+}
+
+/* ── SIDEBAR ── */
+.sidebar {
+  position: fixed; top: 56px; left: 0; bottom: 0;
+  width: var(--sidebar-w);
+  background: var(--forest);
+  overflow-y: auto;
+  z-index: 90;
+  padding: 16px 0 40px;
+  border-right: 1px solid var(--forest-mid);
+}
+.sidebar::-webkit-scrollbar { width: 4px; }
+.sidebar::-webkit-scrollbar-thumb { background: var(--forest-mid); border-radius: 2px; }
+
+.nav-section { margin-bottom: 8px; }
+.nav-section-label {
+  font-family: 'Ubuntu Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--forest-light);
+  padding: 12px 20px 4px;
+}
+.nav-item {
+  display: block;
+  padding: 8px 20px 8px 24px;
+  color: var(--sage);
+  text-decoration: none;
+  font-size: 14px;
+  cursor: pointer;
+  border-left: 2px solid transparent;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  font-family: 'Ubuntu', sans-serif;
+}
+.nav-item:hover { background: var(--forest-mid); color: #fff; }
+.nav-item.active {
+  background: rgba(249,115,22,0.10);
+  border-left-color: var(--moss);
+  color: var(--moss);
+  font-weight: 500;
+}
+.nav-item-sub {
+  padding-left: 40px;
+  font-size: 13px;
+  color: var(--forest-light);
+}
+.nav-item-sub.active { color: var(--sage); border-left-color: var(--forest-light); }
+
+/* ── MAIN CONTENT ── */
+.main {
+  margin-left: var(--sidebar-w);
+  padding-top: 56px;
+  min-height: 100vh;
+}
+.content-wrap {
+  max-width: 820px;
+  padding: 48px 48px 80px;
+}
+
+/* ── PAGE SECTIONS (hidden by default) ── */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ── HERO (home page) ── */
+.hero {
+  background: var(--forest);
+  color: var(--sage);
+  padding: 48px;
+  border-radius: 12px;
+  margin-bottom: 40px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    45deg, transparent, transparent 40px,
+    rgba(255,255,255,0.015) 40px, rgba(255,255,255,0.015) 41px
+  );
+}
+.hero-eyebrow {
+  font-family: 'Ubuntu Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--moss);
+  margin-bottom: 12px;
+}
+.hero h1 {
+  font-family: 'Ubuntu', sans-serif;
+  font-weight: 800;
+  font-size: clamp(36px, 5vw, 56px);
+  color: #fff;
+  line-height: 1.05;
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+}
+.hero h1 span { color: var(--moss); }
+.hero-desc {
+  font-size: 16px;
+  color: var(--sage);
+  max-width: 540px;
+  line-height: 1.6;
+}
+.hero-meta {
+  margin-top: 24px;
+  display: flex; gap: 16px; flex-wrap: wrap;
+}
+.badge {
+  font-family: 'Ubuntu Mono', monospace;
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  letter-spacing: 0.05em;
+}
+.badge-forest { background: var(--forest-mid); color: var(--moss); }
+.badge-ember { background: rgba(249,115,22,0.15); color: #ea6b1a; }
+.badge-sky { background: rgba(100,100,100,0.15); color: #888888; }
+
+/* ── STAT CARDS ── */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-bottom: 40px;
+}
+.stat-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+}
+.stat-num {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--forest);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 4px;
+  font-family: 'Ubuntu Mono', monospace;
+  letter-spacing: 0.05em;
+}
+
+/* ── SECTION CARDS ── */
+.section-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin-bottom: 40px;
+}
+.section-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+  text-decoration: none;
+  color: inherit;
+}
+.section-card:hover {
+  border-color: var(--ember);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+  transform: translateY(-2px);
+}
+.section-card-icon {
+  font-size: 28px;
+  margin-bottom: 12px;
+  display: block;
+  color: var(--ember);
+  font-family: 'Material Symbols Outlined';
+  font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 40;
+  line-height: 1;
+}
+.section-card h3 {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--forest);
+  margin-bottom: 6px;
+}
+.section-card p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+.section-card-meta {
+  margin-top: 12px;
+  font-family: 'Ubuntu Mono', monospace;
+  font-size: 11px;
+  color: var(--forest-light);
+}
+
+/* ── CONTENT TYPOGRAPHY ── */
+.page h1 {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--forest);
+  margin-bottom: 8px;
+  line-height: 1.1;
+}
+.page-subtitle {
+  font-size: 15px;
+  color: var(--muted);
+  font-style: italic;
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+.page h2 {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--forest);
+  margin: 36px 0 12px;
+}
+.page h3 {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--forest-mid);
+  margin: 28px 0 8px;
+}
+.page p { margin-bottom: 16px; }
+.page ul, .page ol { padding-left: 20px; margin-bottom: 16px; }
+.page li { margin-bottom: 4px; }
+
+/* ── FEATURE CARDS ── */
+.feature {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+.feature-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  gap: 12px; flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+.feature-title {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--forest);
+}
+.feature-badges { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+.priority-p1 { background: #fff3ea; color: #c2490a; font-family: 'Ubuntu Mono', monospace; font-size: 11px; padding: 3px 8px; border-radius: 4px; white-space: nowrap; border: 1px solid #fbd5b5; }
+.priority-p2 { background: #f5f5f5; color: #444444; font-family: 'Ubuntu Mono', monospace; font-size: 11px; padding: 3px 8px; border-radius: 4px; white-space: nowrap; border: 1px solid #e0e0e0; }
+.priority-p3 { background: #f0f0ec; color: #666; font-family: 'Ubuntu Mono', monospace; font-size: 11px; padding: 3px 8px; border-radius: 4px; white-space: nowrap; }
+.conn-both { background: #fff3ea; color: #c2490a; font-family: 'Ubuntu Mono', monospace; font-size: 11px; padding: 3px 8px; border-radius: 4px; white-space: nowrap; border: 1px solid #fbd5b5; }
+.conn-off { background: #f0f0f0; color: #333333; font-family: 'Ubuntu Mono', monospace; font-size: 11px; padding: 3px 8px; border-radius: 4px; white-space: nowrap; border: 1px solid #ddd; }
+.conn-on { background: #f8f8f8; color: #666666; font-family: 'Ubuntu Mono', monospace; font-size: 11px; padding: 3px 8px; border-radius: 4px; white-space: nowrap; border: 1px solid #e5e5e5; }
+.feature-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+/* ── TABLES ── */
+.table-wrap { overflow-x: auto; margin: 16px 0 24px; border-radius: 8px; border: 1px solid var(--border); }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+th {
+  background: var(--forest);
+  color: var(--sage);
+  font-family: 'Ubuntu Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 10px 14px;
+  text-align: left;
+}
+td { padding: 10px 14px; border-bottom: 1px solid var(--border); }
+tr:last-child td { border-bottom: none; }
+tr:nth-child(even) td { background: #fafaf7; }
+
+/* ── CODE ── */
+code {
+  font-family: 'Ubuntu Mono', monospace;
+  font-size: 13px;
+  background: var(--sand);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--ember);
+}
+pre {
+  background: var(--forest);
+  color: var(--sage);
+  padding: 20px;
+  border-radius: 8px;
+  overflow-x: auto;
+  margin: 16px 0;
+  font-family: 'Ubuntu Mono', monospace;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* ── CALLOUT ── */
+.callout {
+  background: var(--sand);
+  border-left: 3px solid var(--forest-mid);
+  padding: 14px 18px;
+  border-radius: 0 8px 8px 0;
+  margin: 16px 0;
+  font-size: 14px;
+  color: var(--forest);
+}
+
+/* ── SEARCH RESULTS ── */
+.search-results { display: none; }
+.search-results.active { display: block; }
+.search-hit {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+.search-hit:hover { border-color: var(--moss); }
+.search-hit-title { font-weight: 600; color: var(--forest); margin-bottom: 4px; }
+.search-hit-section { font-family: 'Ubuntu Mono', monospace; font-size: 11px; color: var(--muted); }
+.search-hit-excerpt { font-size: 13px; color: var(--muted); margin-top: 4px; }
+mark { background: #fff3ea; padding: 0 2px; border-radius: 2px; color: inherit; }
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+  :root { --sidebar-w: 0px; }
+  .sidebar { transform: translateX(-280px); width: 280px; transition: transform 0.25s; }
+  .sidebar.open { transform: translateX(0); }
+  .menu-toggle { display: block; }
+  .main { margin-left: 0; }
+  .content-wrap { padding: 24px 20px 60px; }
+  .topbar-sub { display: none; }
+  .topbar-search { min-width: 140px; }
+  .hero { padding: 28px 24px; }
+  .overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 85; }
+  .overlay.active { display: block; }
+}
+</style>
+</head>
+<body>
+
+<div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+
+<!-- TOPBAR -->
+<header class="topbar">
+  <button class="menu-toggle" onclick="toggleSidebar()">
+    <span class="ms" style="font-size:22px;color:var(--sage)">menu</span>
+  </button>
+  <div class="topbar-logo">CHOMP<span>.</span></div>
+  <div class="topbar-sub">2014 JKU · Ursa Minor · Pacific Northwest</div>
+  <div class="topbar-search">
+    <span class="ms" style="font-size:16px;color:var(--forest-light)">search</span>
+    <input type="text" placeholder="Search docs..." id="searchInput" oninput="handleSearch(this.value)">
+  </div>
+</header>
+
+<!-- SIDEBAR -->
+<nav class="sidebar" id="sidebar">
+  <div class="nav-section">
+    <div class="nav-section-label">Overview</div>
+    <a class="nav-item active" onclick="showPage('home')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">home</span>Home</a>
+  </div>
+  <div class="nav-section">
+    <div class="nav-section-label">Features</div>
+    <a class="nav-item" onclick="showPage('trip')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">map</span>Trip Planning</a>
+    <a class="nav-item" onclick="showPage('safety')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">local_fire_department</span>Safety & Conditions</a>
+    <a class="nav-item" onclick="showPage('gear')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">backpack</span>Gear & Packing</a>
+    <a class="nav-item" onclick="showPage('maintenance')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">build</span>Vehicle Maintenance</a>
+    <a class="nav-item" onclick="showPage('media')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">photo_camera</span>Media Logging</a>
+  </div>
+  <div class="nav-section">
+    <div class="nav-section-label">Project</div>
+    <a class="nav-item" onclick="showPage('architecture')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">schema</span>Architecture</a>
+    <a class="nav-item" onclick="showPage('community')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">group</span>Community</a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="main">
+<div class="content-wrap">
+
+<!-- SEARCH RESULTS -->
+<div class="search-results" id="searchResults">
+  <h2 style="font-family:'Ubuntu',sans-serif;font-size:22px;font-weight:700;color:var(--forest);margin-bottom:16px;">Search results</h2>
+  <div id="searchHits"></div>
+</div>
+
+<!-- HOME -->
+<div class="page active" id="page-home">
+  <div class="hero">
+    <div class="hero-eyebrow">Knowledge Base · v1.0</div>
+    <h1>CHOMP<span>.</span></h1>
+    <p class="hero-desc">The complete guide to the Chomp overlanding app — feature documentation, architecture decisions, and community trail knowledge for the Pacific Northwest.</p>
+    <div class="hero-meta">
+      <span class="badge badge-forest">2014 Jeep JKU</span>
+      <span class="badge badge-forest">Ursa Minor Camper</span>
+      <span class="badge badge-ember">Offline-First PWA</span>
+      <span class="badge badge-sky">PNW Focused</span>
+    </div>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-card"><div class="stat-num">33</div><div class="stat-label">Total features</div></div>
+    <div class="stat-card"><div class="stat-num">14</div><div class="stat-label">P1 core</div></div>
+    <div class="stat-card"><div class="stat-num">5</div><div class="stat-label">Feature sections</div></div>
+    <div class="stat-card"><div class="stat-num">🟢</div><div class="stat-label">Offline-first</div></div>
+  </div>
+
+  <h2 style="font-family:'Ubuntu',sans-serif;font-size:22px;font-weight:700;color:var(--forest);margin:0 0 16px;">Feature sections</h2>
+  <div class="section-grid">
+    <a class="section-card" onclick="showPage('trip')">
+    <span class="section-card-icon">map</span>
+      <h3>Trip Planning</h3>
+      <p>Offline maps, campsite planner, GPS track logging, weather, permits, and HA automation.</p>
+      <div class="section-card-meta">3 P1 · 4 P2 · 1 P3</div>
+    </a>
+    <a class="section-card" onclick="showPage('safety')">
+    <span class="section-card-icon">local_fire_department</span>
+      <h3>Safety & Conditions</h3>
+      <p>Fire perimeters, evacuation zones, burn bans, AQI, escape routes — cached for off-grid use.</p>
+      <div class="section-card-meta">3 P1 · 3 P2 · 1 P3</div>
+    </a>
+    <a class="section-card" onclick="showPage('gear')">
+    <span class="section-card-icon">backpack</span>
+      <h3>Gear & Packing</h3>
+      <p>Pack lists, Ursa Minor storage map, camera kit tracker, water/food supply, recovery gear.</p>
+      <div class="section-card-meta">3 P1 · 2 P2 · 1 P3</div>
+    </a>
+    <a class="section-card" onclick="showPage('maintenance')">
+    <span class="section-card-icon">build</span>
+      <h3>Vehicle Maintenance</h3>
+      <p>JK-specific service intervals, mod registry, pre-trip inspection, tire rotation log.</p>
+      <div class="section-card-meta">3 P1 · 2 P2 · 1 P3</div>
+    </a>
+    <a class="section-card" onclick="showPage('media')">
+    <span class="section-card-icon">photo_camera</span>
+      <h3>Media Logging</h3>
+      <p>Shot logs with GPS tagging, drone flight records, SD card tracker, Lightroom sync.</p>
+      <div class="section-card-meta">2 P1 · 3 P2 · 1 P3</div>
+    </a>
+  </div>
+
+  <div class="callout">
+    <strong>Offline-first principle:</strong> All P1 features work with zero connectivity. Network-dependent features degrade gracefully — cached data is shown with a "last updated" timestamp, and write actions queue for reconnect.
+  </div>
+</div>
+
+<!-- TRIP PLANNING -->
+<div class="page" id="page-trip">
+  <h1>Trip Planning</h1>
+  <p class="page-subtitle">Pre-departure intelligence: routes, conditions, weather, fuel, and home automation.</p>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Offline Map Tiles + GPX Routes</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span></div>
+    </div>
+    <p class="feature-desc">Download Caltopo / OsmAnd tiles and custom GPX layers before departure. Caches the active trip area at multiple zoom levels for full off-grid navigation.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>Recommended zoom levels 10–16 for PNW forest roads</li>
+      <li>Import GPX from Caltopo, Gaia GPS, or custom tracks</li>
+      <li>Cache budget: 500MB–2GB for typical PNW trip area</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Campsite & Waypoint Planner</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span></div>
+    </div>
+    <p class="feature-desc">Pin campsites, water sources, bailout points, and POIs with notes and elevation. Sync from iOverlander and FreeCampsites pre-trip; view fully offline.</p>
+    <div class="table-wrap" style="margin-top:12px;">
+      <table><thead><tr><th>Type</th><th>Description</th></tr></thead><tbody>
+        <tr><td><span class="ms" style="color:var(--ember)">camping</span> Camp</td><td>Overnight site with capacity and surface notes</td></tr>
+        <tr><td><span class="ms" style="color:var(--ember)">water_drop</span> Water</td><td>Source type, flow, treatment needed</td></tr>
+        <tr><td><span class="ms" style="color:var(--ember)">alt_route</span> Bailout</td><td>Paved exit with distance to nearest town</td></tr>
+        <tr><td><span class="ms" style="color:var(--ember)">local_gas_station</span> Fuel</td><td>Last known price, hours, card acceptance</td></tr>
+        <tr><td><span class="ms" style="color:var(--ember)">location_on</span> POI</td><td>Anything else worth noting</td></tr>
+      </tbody></table>
+    </div>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Trip Journal with GPS Track Logging</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-off">🔵 Off-grid</span></div>
+    </div>
+    <p class="feature-desc">Background GPS breadcrumb recording. Auto-generates daily track logs. Export as GPX or KML post-trip for Lightroom, Google Earth, or sharing.</p>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Burn Ban Status Card</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-both">🟢 Both</span></div>
+    </div>
+    <p class="feature-desc">Pulls county-level burn restrictions from AirNow, InciWeb, and WA DNR before departure. Caches last-known status with a prominent "last updated" timestamp.</p>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Weather Window Planner</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-on">⚪ On-grid</span></div>
+    </div>
+    <p class="feature-desc">NOAA / OpenMeteo forecasts for trip dates. Flags high-wind or precipitation windows relevant to rooftop camping with the Ursa Minor. Wind &gt;35mph sustained: rooftop camping not recommended.</p>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Road Condition & Permit Tracker</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-both">🟢 Both</span></div>
+    </div>
+    <p class="feature-desc">Store road status notes per route with reminder dates for permits. Common PNW permits: Northwest Forest Pass, Discover Pass, Okanogan-Wenatchee NF campfire permits.</p>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Fuel & Range Calculator</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-both">🟢 Both</span></div>
+    </div>
+    <p class="feature-desc">JKU defaults pre-loaded: 17mpg highway, 12mpg offroad, 22.5 gal tank, 3 gal reserve. Flags nearest gas station pre-departure.</p>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Home Assistant Departure Automation</div>
+      <div class="feature-badges"><span class="priority-p3">P3 — Nice to Have</span><span class="conn-on">⚪ On-grid</span></div>
+    </div>
+    <p class="feature-desc">Trip start triggers HA webhook: arm security, set thermostat to away, turn off lights. See Architecture → Home Assistant Integration for setup.</p>
+  </div>
+</div>
+
+<!-- SAFETY -->
+<div class="page" id="page-safety">
+  <h1>Safety & Conditions</h1>
+  <p class="page-subtitle">Live situational awareness before and during the trip. Fire perimeter GeoJSON (~5–15MB for western US) is cached at trip-download time.</p>
+
+  <div class="feature"><div class="feature-header"><div class="feature-title">Active Fire Perimeter Map</div><div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span></div></div><p class="feature-desc">NIFC / InciWeb GeoJSON overlay on the offline base map. Pre-cached at trip download. Shows active fire boundaries relative to GPS position and planned route. Source: NIFC ArcGIS, updated daily on-grid.</p></div>
+
+  <div class="feature"><div class="feature-header"><div class="feature-title">Evacuation Zone Status</div><div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span></div></div>
+    <p class="feature-desc">Displays current evacuation zone level for your GPS position. Cached pre-trip; refreshes on reconnect.</p>
+    <div class="table-wrap" style="margin-top:12px;"><table><thead><tr><th>Level</th><th>Color</th><th>Meaning</th></tr></thead><tbody>
+      <tr><td>Advisory</td><td><span class="ms" style="color:#b59000;font-size:16px">circle</span> Yellow</td><td>Be aware, be ready</td></tr>
+      <tr><td>Warning</td><td><span class="ms" style="color:#d4600a;font-size:16px">circle</span> Orange</td><td>Be set to go immediately</td></tr>
+      <tr><td>Order</td><td><span class="ms" style="color:#c0392b;font-size:16px">circle</span> Red</td><td>Leave now</td></tr>
+    </tbody></table></div>
+  </div>
+
+  <div class="feature"><div class="feature-header"><div class="feature-title">Burn Ban Status by County</div><div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span></div></div><p class="feature-desc">County-level burn restriction status from WA DNR and AirNow. Cached with timestamp. Also surfaced in Trip Planning pre-departure card.</p></div>
+
+  <div class="feature"><div class="feature-header"><div class="feature-title">AQI & Smoke Forecast Layer</div><div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-on">⚪ On-grid</span></div></div><p class="feature-desc">Air quality index and smoke plume overlay. AQI &lt;100: clear shooting conditions. AQI 100–150: haze visible in footage. AQI &gt;150: fly Air 2s with caution — particulates may affect gimbal sensors.</p></div>
+
+  <div class="feature"><div class="feature-header"><div class="feature-title">Escape Route Planner</div><div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-both">🟢 Both</span></div></div><p class="feature-desc">Pre-download alternate exit GPX routes from each campsite. Surfaces fastest paved exit in one tap. Best practice: download two exit routes per camp in different directions — PNW single-canyon access roads can be cut off quickly.</p></div>
+
+  <div class="feature"><div class="feature-header"><div class="feature-title">Push Alerts for New Fires</div><div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-on">⚪ On-grid</span></div></div><p class="feature-desc">Notify when a new fire ignition or perimeter expansion is detected within a configurable radius of the trip area (default: 25 miles).</p></div>
+
+  <div class="feature"><div class="feature-header"><div class="feature-title">NOAA Red Flag Warning Integration</div><div class="feature-badges"><span class="priority-p3">P3 — Nice to Have</span><span class="conn-on">⚪ On-grid</span></div></div><p class="feature-desc">Surface active Red Flag Warnings (high wind + low humidity) for the trip area. Informs campfire decisions even where no formal ban is in effect. Source: NOAA NWS API.</p></div>
+</div>
+
+<!-- GEAR -->
+<div class="page" id="page-gear">
+  <h1>Gear & Packing</h1>
+  <p class="page-subtitle">Kit management for the JKU, Ursa Minor camper top, recovery gear, and camera rigs.</p>
+
+  <div class="feature"><div class="feature-header"><div class="feature-title">Modular Pack List Templates</div><div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span></div></div><p class="feature-desc">Reusable checklists per trip type: 2-day summer, 5-day summer, 2-day winter, photography mission. Check off items at pack time. Fully offline.</p></div>
+
+  <div class="feature"><div class="feature-header"><div class="feature-title">Ursa Minor Camper Top Config</div><div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span></div></div>
+    <p class="feature-desc">Visual storage map of the JKU. Persists between trips so you know what's in Chomp without opening the back.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>Sleeping platform (under-bed storage)</li>
+      <li>Left and right side cabinets</li>
+      <li>Roof rack (forward / aft)</li>
+      <li>Interior rear passenger area</li>
+    </ul>
+  </div>
+
+  <div class="feature"><div class="feature-header"><div class="feature-title">Camera Kit Tracker</div><div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span></div></div>
+    <p class="feature-desc">Pre-shoot checklist per rig. Tracks batteries, SD cards, and rig-specific notes.</p>
+    <div class="table-wrap" style="margin-top:12px;"><table><thead><tr><th>Rig</th><th>Batteries</th><th>Cards</th></tr></thead><tbody>
+      <tr><td>Nikon D850</td><td>EN-EL15c ×2</td><td>CFexpress + XQD</td></tr>
+      <tr><td>DJI Air 2s</td><td>Intelligent Flight ×3</td><td>microSD</td></tr>
+      <tr><td>Insta360 Ace Pro 2</td><td>1800mAh ×2</td><td>microSD</td></tr>
+    </tbody></table></div>
+  </div>
+
+  <div class="feature"><div class="feature-header"><div class="feature-title">Water & Food Supply Tracker</div><div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-off">🔵 Off-grid</span></div></div><p class="feature-desc">Log water capacity, daily consumption (default 1 gal/person/day), and food days. Calculates resupply day with configurable safety buffer (default 1 day).</p></div>
+
+  <div class="feature"><div class="feature-header"><div class="feature-title">Recovery Gear Checklist</div><div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-both">🟢 Both</span></div></div>
+    <p class="feature-desc">Dedicated checklist with condition notes per item.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>Hi-Lift Jack (48") + base plate</li>
+      <li>MaxTrax MKII ×2</li>
+      <li>Kinetic recovery rope (20ft, 3/4")</li>
+      <li>Soft shackles ×4, D-ring shackles ×2 (rated)</li>
+      <li>Folding shovel, tire repair kit + CO2, IFAK</li>
+    </ul>
+  </div>
+
+  <div class="feature"><div class="feature-header"><div class="feature-title">Gear Weight & Load Ledger</div><div class="feature-badges"><span class="priority-p3">P3 — Nice to Have</span><span class="conn-both">🟢 Both</span></div></div><p class="feature-desc">Track total payload against JKU GVW (4,750 lbs — check door placard). Flags overloading risk especially relevant with camper top and skid plates.</p></div>
+</div>
+
+<!-- MAINTENANCE -->
+<div class="page" id="page-maintenance">
+  <h1>Vehicle Maintenance</h1>
+  <p class="page-subtitle">JK-specific service tracking, mod registry, and pre-trip inspection.</p>
+
+  <div class="feature"><div class="feature-header"><div class="feature-title">Maintenance Log</div><div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span></div></div>
+    <p class="feature-desc">Record all service events. Pre-seeded with JK-specific intervals.</p>
+    <div class="table-wrap" style="margin-top:12px;"><table><thead><tr><th>Service</th><th>Interval</th><th>Notes</th></tr></thead><tbody>
+      <tr><td>Engine oil</td><td>5,000 mi</td><td>0W-20 synthetic</td></tr>
+      <tr><td>Front diff fluid</td><td>30,000 mi</td><td>Dana 30 — Mopar fluid</td></tr>
+      <tr><td>Rear diff fluid</td><td>30,000 mi</td><td>Dana 44 — Mopar fluid</td></tr>
+      <tr><td>Transfer case</td><td>30,000 mi</td><td>NV241 or NV241OR</td></tr>
+      <tr><td>Transmission</td><td>60,000 mi</td><td>545RFE — check hot</td></tr>
+      <tr><td>Spark plugs</td><td>30,000 mi</td><td>NGK or Champion OEM</td></tr>
+      <tr><td>Coolant flush</td><td>5 years</td><td>OAT type — do not mix</td></tr>
+    </tbody></table></div>
+  </div>
+
+  <div class="feature"><div class="feature-header"><div class="feature-title">Service Interval Reminders</div><div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span></div></div><p class="feature-desc">Mileage- and time-based alerts. Default: warn at 500mi / 30 days before due date. Push notification support.</p></div>
+
+  <div class="feature"><div class="feature-header"><div class="feature-title">Pre-Trip Vehicle Inspection Checklist</div><div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span></div></div>
+    <p class="feature-desc">Timestamped pass/fail walkaround per trip. Generates a PDF record for insurance if needed.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>Tire PSI (all 5 including spare)</li>
+      <li>Engine oil, coolant, brake fluid, washer fluid</li>
+      <li>All exterior lights functional</li>
+      <li>Recovery gear secured and accessible</li>
+      <li>Skid plate bolts tight</li>
+      <li>Ursa Minor latches and hinges</li>
+      <li>Roof rack load secure</li>
+    </ul>
+  </div>
+
+  <div class="feature"><div class="feature-header"><div class="feature-title">Mod & Build Registry</div><div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-both">🟢 Both</span></div></div><p class="feature-desc">Catalog every modification with install date, parts, vendor, torque specs, and photos. Invaluable for resale documentation and insurance claims.</p></div>
+
+  <div class="feature"><div class="feature-header"><div class="feature-title">Tire Tracking & Rotation Log</div><div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-both">🟢 Both</span></div></div>
+    <p class="feature-desc">Built for the JK 5-tire rotation pattern including full-size spare. Recommended interval: 5,000–6,000 miles.</p>
+    <pre>Before:  LF → RF → RR → LR → Spare
+After:   Spare → LF → RF → RR → LR</pre>
+  </div>
+
+  <div class="feature"><div class="feature-header"><div class="feature-title">Trail Damage & Incident Log</div><div class="feature-badges"><span class="priority-p3">P3 — Nice to Have</span><span class="conn-off">🔵 Off-grid</span></div></div><p class="feature-desc">Log rock strikes, water crossings, recovery events, and tire events with GPS pin and photo. Useful for warranty claims and post-trip inspection focus.</p></div>
+</div>
+
+<!-- MEDIA -->
+<div class="page" id="page-media">
+  <h1>Media Logging</h1>
+  <p class="page-subtitle">Shot logging, drone records, and post-trip media sync for D850, Air 2s, and Insta360 Ace Pro 2.</p>
+
+  <div class="feature"><div class="feature-header"><div class="feature-title">Shot Log with GPS + Gear Tag</div><div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-off">🔵 Off-grid</span></div></div>
+    <p class="feature-desc">Log a shot in 3 taps: select rig, tag subject, auto-save with GPS + timestamp. No photo upload — pure metadata. Matches to Lightroom catalog by timestamp post-trip.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>Rigs: D850 / Air 2s / Insta360</li>
+      <li>Subjects: landscape, wildlife, camp, vehicle, people</li>
+      <li>Optional: focal length, lighting conditions, notes</li>
+    </ul>
+  </div>
+
+  <div class="feature"><div class="feature-header"><div class="feature-title">Drone Flight Log</div><div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-off">🔵 Off-grid</span></div></div>
+    <p class="feature-desc">Per-flight records for post-production context and recreational best-practice logging.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>Launch GPS, duration, subject, battery used</li>
+      <li>Wind conditions and approximate AGL altitude</li>
+      <li>Built-in pre-flight checklist</li>
+    </ul>
+  </div>
+
+  <div class="feature"><div class="feature-header"><div class="feature-title">SD Card & Storage Tracker</div><div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-both">🟢 Both</span></div></div>
+    <p class="feature-desc">Track cards per camera through the full workflow.</p>
+    <pre>Shoot → Shot → Back up → Backed Up → Format → Cleared → Ready</pre>
+  </div>
+
+  <div class="feature"><div class="feature-header"><div class="feature-title">Location Scouting Notes</div><div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-off">🔵 Off-grid</span></div></div><p class="feature-desc">Pin locations with golden hour timing, best shooting direction, obstacles, and access notes. Resurfaces automatically on return trips to the same area.</p></div>
+
+  <div class="feature"><div class="feature-header"><div class="feature-title">Post-Trip Media Sync Queue</div><div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-on">⚪ On-grid</span></div></div><p class="feature-desc">On return to Wi-Fi, sync shot log and GPS tracks to Lightroom Classic catalog or NAS (SMB share — works with your home Linux setup). Matches metadata to file timestamps automatically.</p></div>
+
+  <div class="feature"><div class="feature-header"><div class="feature-title">Trip Highlight Reel Builder</div><div class="feature-badges"><span class="priority-p3">P3 — Nice to Have</span><span class="conn-on">⚪ On-grid</span></div></div><p class="feature-desc">Auto-select best GPS waypoints and shot moments to generate a shareable trip summary card — map plus photo thumbnails. Social-ready export in 1:1 and 16:9.</p></div>
+</div>
+
+<!-- ARCHITECTURE -->
+<div class="page" id="page-architecture">
+  <h1>Architecture</h1>
+  <p class="page-subtitle">Technical decisions for the Chomp PWA — storage, data sources, and content pipeline.</p>
+
+  <h2>Offline-First Storage</h2>
+  <div class="table-wrap"><table><thead><tr><th>Data type</th><th>Storage</th><th>Notes</th></tr></thead><tbody>
+    <tr><td>Map tiles</td><td>Cache API</td><td>500MB–2GB for PNW coverage</td></tr>
+    <tr><td>Fire perimeter GeoJSON</td><td>Cache API</td><td>~5–15MB western US, refresh daily</td></tr>
+    <tr><td>GPX tracks</td><td>IndexedDB</td><td>Append-only, export on demand</td></tr>
+    <tr><td>Checklists & logs</td><td>IndexedDB</td><td>Sync queue on reconnect</td></tr>
+    <tr><td>Shot metadata</td><td>IndexedDB</td><td>Lightweight — no photos stored</td></tr>
+    <tr><td>App shell</td><td>Cache API</td><td>Full offline app load</td></tr>
+  </tbody></table></div>
+
+  <h2>Safety Data Sources</h2>
+  <div class="table-wrap"><table><thead><tr><th>Data</th><th>Source</th><th>Format</th></tr></thead><tbody>
+    <tr><td>Fire perimeters</td><td>NIFC ArcGIS / InciWeb</td><td>GeoJSON</td></tr>
+    <tr><td>Burn bans</td><td>WA DNR API, AirNow</td><td>JSON</td></tr>
+    <tr><td>Evacuation zones</td><td>County OEM feeds</td><td>GeoJSON</td></tr>
+    <tr><td>Red Flag Warnings</td><td>NOAA NWS API</td><td>JSON</td></tr>
+  </tbody></table></div>
+
+  <h2>Home Assistant Integration</h2>
+  <p>Keep scope narrow for v1: departure and return-home webhooks only. Two automations in HA, configured once, covers 90% of the value.</p>
+  <div class="callout">Avoid building a full HA dashboard inside Chomp — that's a deep rabbit hole with diminishing returns for an overlanding tool.</div>
+
+  <h2>Content Pipeline</h2>
+  <p>This knowledge base is the content source for both the in-app Help section and the community website. All content lives in Git as markdown — never in a CMS.</p>
+  <pre>Edit markdown → git commit → auto-deploy
+  → Chomp app Help section (docs viewer)
+  → Community website (Docusaurus / GitHub Pages)</pre>
+</div>
+
+<!-- COMMUNITY -->
+<div class="page" id="page-community">
+  <h1>Community</h1>
+  <p class="page-subtitle">Trail knowledge from the PNW overlanding community.</p>
+
+  <div class="callout">The community layer is a public website built from the same content source as the in-app docs — push to Git, both update simultaneously.</div>
+
+  <h2>What we're looking for</h2>
+  <ul>
+    <li>Trail condition reports (seasonal access, road quality, hazards)</li>
+    <li>Campsite notes (surface, exposure, fire ring, cell signal)</li>
+    <li>Water source reports (flow, clarity, treatment needed)</li>
+    <li>Gear recommendations specific to JK/JL platforms</li>
+    <li>Photography location tips for PNW overlanding routes</li>
+  </ul>
+
+  <h2>Trail Report Template</h2>
+  <pre>## [Trail Name] — [Month Year]
+
+Location: [General area]
+Access road: [Road number or name]
+Condition: Open / Rough / High clearance / 4WD / Closed
+Visited: [Month Year]
+
+Notes: [Road surface, water crossings, hazards, highlights]
+
+Campsites: [Description — GPS optional]
+
+Water Sources: [Creek names, flow, treatment]
+
+Cell Signal: [Carrier, strength at camp]
+
+Submitted by: [Username]</pre>
+
+  <h2>PNW Resources</h2>
+  <ul>
+    <li><a href="https://fortress.wa.gov/dnr/app1/RoadMaintenance/" style="color:var(--forest-mid)">WA DNR Interactive Map</a> — forest road status</li>
+    <li><a href="https://www.fs.usda.gov/okawen" style="color:var(--forest-mid)">Okanogan-Wenatchee NF</a> — road conditions</li>
+    <li><a href="https://www.fs.usda.gov/mbs" style="color:var(--forest-mid)">Mount Baker-Snoqualmie NF</a></li>
+    <li><a href="https://ioverlander.com" style="color:var(--forest-mid)">iOverlander</a> — community camp reports</li>
+    <li><a href="https://inciweb.wildfire.gov" style="color:var(--forest-mid)">InciWeb</a> — active fire information</li>
+  </ul>
+</div>
+
+</div><!-- content-wrap -->
+</main>
+
+<script>
+const pages = ['home','trip','safety','gear','maintenance','media','architecture','community'];
+
+function showPage(id) {
+  pages.forEach(p => {
+    document.getElementById('page-'+p).classList.remove('active');
+  });
+  document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active'));
+  document.getElementById('page-'+id).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(el => {
+    if (el.getAttribute('onclick') && el.getAttribute('onclick').includes("'"+id+"'")) {
+      el.classList.add('active');
+    }
+  });
+  document.getElementById('searchResults').classList.remove('active');
+  document.getElementById('searchInput').value = '';
+  window.scrollTo(0,0);
+  closeSidebar();
+}
+
+// Search index
+const index = [
+  {page:'trip', title:'Offline Map Tiles + GPX Routes', section:'Trip Planning', text:'download caltopo osmand tiles gpx layers offline navigation zoom levels'},
+  {page:'trip', title:'Campsite & Waypoint Planner', section:'Trip Planning', text:'campsites water sources bailout points iOverlander FreeCampsites waypoints'},
+  {page:'trip', title:'Burn Ban Status', section:'Trip Planning', text:'burn ban county restrictions airnow inciweb dnr fire campfire'},
+  {page:'trip', title:'Fuel & Range Calculator', section:'Trip Planning', text:'fuel mpg range calculator gas station highway offroad JKU tank'},
+  {page:'trip', title:'Home Assistant Automation', section:'Trip Planning', text:'home assistant HA webhook departure security thermostat lights'},
+  {page:'safety', title:'Active Fire Perimeter Map', section:'Safety & Conditions', text:'fire perimeter NIFC inciweb geojson overlay map wildfire'},
+  {page:'safety', title:'Evacuation Zone Status', section:'Safety & Conditions', text:'evacuation zone advisory warning order emergency'},
+  {page:'safety', title:'Escape Route Planner', section:'Safety & Conditions', text:'escape route exit gpx alternate bailout paved'},
+  {page:'safety', title:'AQI & Smoke Forecast', section:'Safety & Conditions', text:'air quality smoke AQI drone Air 2s footage visibility'},
+  {page:'gear', title:'Camera Kit Tracker', section:'Gear & Packing', text:'D850 Air 2s Insta360 Ace Pro 2 battery SD card lens checklist'},
+  {page:'gear', title:'Ursa Minor Camper Config', section:'Gear & Packing', text:'ursa minor camper top storage map JKU sleeping platform cabinet'},
+  {page:'gear', title:'Recovery Gear Checklist', section:'Gear & Packing', text:'hi-lift maxtrax kinetic rope shackles shovel first aid IFAK recovery'},
+  {page:'maintenance', title:'Maintenance Log', section:'Vehicle Maintenance', text:'oil diff fluid transfer case dana 44 service intervals mileage JK'},
+  {page:'maintenance', title:'Pre-Trip Inspection', section:'Vehicle Maintenance', text:'tire PSI fluids lights skid plates ursa minor latches walkaround'},
+  {page:'maintenance', title:'Mod & Build Registry', section:'Vehicle Maintenance', text:'modifications lift bumpers skids lockers parts vendor torque specs'},
+  {page:'maintenance', title:'Tire Rotation Log', section:'Vehicle Maintenance', text:'tire rotation 5-tire pattern full-size spare JK tread depth'},
+  {page:'media', title:'Shot Log with GPS', section:'Media Logging', text:'shot log GPS tag D850 Air 2s Insta360 focal length Lightroom timestamp'},
+  {page:'media', title:'Drone Flight Log', section:'Media Logging', text:'Air 2s drone flight log battery GPS duration altitude wind pre-flight'},
+  {page:'media', title:'SD Card Tracker', section:'Media Logging', text:'SD card storage backed up cleared format microSD CFexpress'},
+  {page:'media', title:'Post-Trip Media Sync', section:'Media Logging', text:'Lightroom sync NAS SMB catalog metadata timestamps'},
+  {page:'architecture', title:'Offline Storage Strategy', section:'Architecture', text:'cache API IndexedDB map tiles offline first PWA storage'},
+  {page:'architecture', title:'Home Assistant Integration', section:'Architecture', text:'HA webhook departure return home automation'},
+  {page:'community', title:'Trail Report Template', section:'Community', text:'trail report condition campsite water signal PNW overlanding'},
+];
+
+function handleSearch(q) {
+  const sr = document.getElementById('searchResults');
+  const hits = document.getElementById('searchHits');
+  if (!q.trim()) { sr.classList.remove('active'); return; }
+  pages.forEach(p => document.getElementById('page-'+p).classList.remove('active'));
+  sr.classList.add('active');
+  const terms = q.toLowerCase().split(/\s+/);
+  const results = index.filter(item =>
+    terms.some(t => item.title.toLowerCase().includes(t) || item.text.includes(t) || item.section.toLowerCase().includes(t))
+  );
+  if (!results.length) {
+    hits.innerHTML = '<p style="color:var(--muted);font-size:14px;">No results found for "'+q+'"</p>';
+    return;
+  }
+  hits.innerHTML = results.map(r => `
+    <div class="search-hit" onclick="showPage('${r.page}')">
+      <div class="search-hit-title">${r.title}</div>
+      <div class="search-hit-section">${r.section}</div>
+    </div>
+  `).join('');
+}
+
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('active');
+}
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('active');
+}
+</script>
+</body>
+</html>
