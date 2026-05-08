@@ -429,6 +429,13 @@ pre {
 .search-hit-title { font-weight: 600; color: var(--forest); margin-bottom: 4px; }
 .search-hit-section { font-family: 'Ubuntu Mono', monospace; font-size: 11px; color: var(--muted); }
 .search-hit-excerpt { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+/* ── TIER BADGES ── */
+.tier-free { background: #f0f0f0; color: #333; font-family: 'Ubuntu Mono', monospace; font-size: 10px; padding: 2px 7px; border-radius: 3px; white-space: nowrap; border: 1px solid #ddd; letter-spacing: 0.04em; }
+.tier-pro { background: #fff3ea; color: #c2490a; font-family: 'Ubuntu Mono', monospace; font-size: 10px; padding: 2px 7px; border-radius: 3px; white-space: nowrap; border: 1px solid #fbd5b5; letter-spacing: 0.04em; }
+.tier-team { background: #111; color: #f97316; font-family: 'Ubuntu Mono', monospace; font-size: 10px; padding: 2px 7px; border-radius: 3px; white-space: nowrap; border: 1px solid #444; letter-spacing: 0.04em; }
+.tier-note { font-size: 12px; color: var(--muted); font-style: italic; margin-top: 6px; }
+
 mark { background: #fff3ea; padding: 0 2px; border-radius: 2px; color: inherit; }
 
 /* ── MOBILE ── */
@@ -457,7 +464,7 @@ mark { background: #fff3ea; padding: 0 2px; border-radius: 2px; color: inherit; 
     <span class="ms" style="font-size:22px;color:var(--sage)">menu</span>
   </button>
   <div class="topbar-logo">CHOMP<span>.</span></div>
-  <div class="topbar-sub">2014 JKU · Ursa Minor · Pacific Northwest</div>
+  <div class="topbar-sub">Your Rig · Your Adventure · Pacific Northwest</div>
   <div class="topbar-search">
     <span class="ms" style="font-size:16px;color:var(--forest-light)">search</span>
     <input type="text" placeholder="Search docs..." id="searchInput" oninput="handleSearch(this.value)">
@@ -476,6 +483,7 @@ mark { background: #fff3ea; padding: 0 2px; border-radius: 2px; color: inherit; 
     <a class="nav-item" onclick="showPage('safety')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">local_fire_department</span>Safety & Conditions</a>
     <a class="nav-item" onclick="showPage('gear')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">backpack</span>Gear & Packing</a>
     <a class="nav-item" onclick="showPage('maintenance')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">build</span>Vehicle Maintenance</a>
+    <a class="nav-item" onclick="showPage('meals')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">restaurant</span>Meal Planning</a>
     <a class="nav-item" onclick="showPage('media')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">photo_camera</span>Media Logging</a>
   </div>
   <div class="nav-section">
@@ -483,6 +491,8 @@ mark { background: #fff3ea; padding: 0 2px; border-radius: 2px; color: inherit; 
     <a class="nav-item" onclick="showPage('architecture')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">schema</span>Architecture</a>
     <a class="nav-item" onclick="showPage('users')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">manage_accounts</span>Users & Identity</a>
     <a class="nav-item" onclick="showPage('pets')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">pets</span>Pet Care</a>
+    <a class="nav-item" onclick="showPage('social')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">share</span>Social Platforms</a>
+    <a class="nav-item" onclick="showPage('monetization')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">sell</span>Free vs Paid</a>
     <a class="nav-item" onclick="showPage('community')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">group</span>Community</a>
   </div>
 </nav>
@@ -504,18 +514,18 @@ mark { background: #fff3ea; padding: 0 2px; border-radius: 2px; color: inherit; 
     <h1>CHOMP<span>.</span></h1>
     <p class="hero-desc">The complete guide to the Chomp overlanding app — feature documentation, architecture decisions, and community trail knowledge for the Pacific Northwest.</p>
     <div class="hero-meta">
-      <span class="badge badge-forest">2014 Jeep JKU</span>
-      <span class="badge badge-forest">Ursa Minor Camper</span>
+      <span class="badge badge-forest">Any Rig</span>
+      <span class="badge badge-forest">Configurable Vehicle</span>
       <span class="badge badge-ember">Offline-First PWA</span>
       <span class="badge badge-sky">PNW Focused</span>
     </div>
   </div>
 
   <div class="stat-grid">
-    <div class="stat-card"><div class="stat-num">42</div><div class="stat-label">Total features</div></div>
-    <div class="stat-card"><div class="stat-num">19</div><div class="stat-label">P1 core</div></div>
-    <div class="stat-card"><div class="stat-num">7</div><div class="stat-label">Feature sections</div></div>
-    <div class="stat-card"><div class="stat-num">🟢</div><div class="stat-label">Offline-first</div></div>
+    <div class="stat-card"><div class="stat-num">57</div><div class="stat-label">Total features</div></div>
+    <div class="stat-card"><div class="stat-num">22</div><div class="stat-label">P1 core</div></div>
+    <div class="stat-card"><div class="stat-num">11</div><div class="stat-label">Feature sections</div></div>
+    <div class="stat-card"><div class="stat-num" style="color:var(--ember);font-size:20px;padding-top:4px">FREE · PRO · TEAM</div><div class="stat-label">Pricing tiers</div></div>
   </div>
 
   <h2 style="font-family:'Ubuntu',sans-serif;font-size:22px;font-weight:700;color:var(--forest);margin:0 0 16px;">Feature sections</h2>
@@ -541,7 +551,7 @@ mark { background: #fff3ea; padding: 0 2px; border-radius: 2px; color: inherit; 
     <a class="section-card" onclick="showPage('maintenance')">
     <span class="section-card-icon">build</span>
       <h3>Vehicle Maintenance</h3>
-      <p>JK-specific service intervals, mod registry, pre-trip inspection, tire rotation log.</p>
+      <p>Configurable vehicle profile, internet-sourced maintenance schedules, mod registry, pre-trip inspection, tire rotation log.</p>
       <div class="section-card-meta">3 P1 · 2 P2 · 1 P3</div>
     </a>
     <a class="section-card" onclick="showPage('media')">
@@ -629,7 +639,7 @@ mark { background: #fff3ea; padding: 0 2px; border-radius: 2px; color: inherit; 
       <div class="feature-title">Fuel & Range Calculator</div>
       <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-both">🟢 Both</span></div>
     </div>
-    <p class="feature-desc">JKU defaults pre-loaded: 17mpg highway, 12mpg offroad, 22.5 gal tank, 3 gal reserve. Flags nearest gas station pre-departure.</p>
+    <p class="feature-desc">Pulls highway and offroad MPG from your vehicle profile. Enter start fuel level and route distance — estimates fuel needed with configurable reserve margin. Flags nearest gas station pre-departure. All values editable per trip.</p>
   </div>
 
   <div class="feature">
@@ -671,12 +681,12 @@ mark { background: #fff3ea; padding: 0 2px; border-radius: 2px; color: inherit; 
 <!-- GEAR -->
 <div class="page" id="page-gear">
   <h1>Gear & Packing</h1>
-  <p class="page-subtitle">Kit management for the JKU, Ursa Minor camper top, recovery gear, and camera rigs.</p>
+  <p class="page-subtitle">Kit management for your rig, camper top, recovery gear, and camera equipment.</p>
 
   <div class="feature"><div class="feature-header"><div class="feature-title">Modular Pack List Templates</div><div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span></div></div><p class="feature-desc">Reusable checklists per trip type: 2-day summer, 5-day summer, 2-day winter, photography mission. Check off items at pack time. Fully offline.</p></div>
 
   <div class="feature"><div class="feature-header"><div class="feature-title">Ursa Minor Camper Top Config</div><div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span></div></div>
-    <p class="feature-desc">Visual storage map of the JKU. Persists between trips so you know what's in Chomp without opening the back.</p>
+    <p class="feature-desc">Visual storage map of your rig and camper setup. Persists between trips so you know what's loaded where without opening the back. Layout zones are configurable to match your specific setup.</p>
     <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
       <li>Sleeping platform (under-bed storage)</li>
       <li>Left and right side cabinets</li>
@@ -710,53 +720,98 @@ mark { background: #fff3ea; padding: 0 2px; border-radius: 2px; color: inherit; 
     </ul>
   </div>
 
-  <div class="feature"><div class="feature-header"><div class="feature-title">Gear Weight & Load Ledger</div><div class="feature-badges"><span class="priority-p3">P3 — Nice to Have</span><span class="conn-both">🟢 Both</span></div></div><p class="feature-desc">Track total payload against JKU GVW (4,750 lbs — check door placard). Flags overloading risk especially relevant with camper top and skid plates.</p></div>
+  <div class="feature"><div class="feature-header"><div class="feature-title">Gear Weight & Load Ledger</div><div class="feature-badges"><span class="priority-p3">P3 — Nice to Have</span><span class="conn-both">🟢 Both</span></div></div><p class="feature-desc">Log item weights and track total payload against your vehicle's GVW (pulled from vehicle profile). Flags overloading risk — especially relevant with camper tops, roof racks, and skid plates adding base weight.</p></div>
 </div>
 
 <!-- MAINTENANCE -->
 <div class="page" id="page-maintenance">
   <h1>Vehicle Maintenance</h1>
-  <p class="page-subtitle">JK-specific service tracking, mod registry, and pre-trip inspection.</p>
+  <p class="page-subtitle">Configurable vehicle profile with internet-sourced maintenance schedules, mod registry, and pre-trip inspection.</p>
 
-  <div class="feature"><div class="feature-header"><div class="feature-title">Maintenance Log</div><div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span></div></div>
-    <p class="feature-desc">Record all service events. Pre-seeded with JK-specific intervals.</p>
+  <div class="callout"><strong>Vehicle-agnostic by design:</strong> Maintenance schedules are fetched from manufacturer data and overlanding community sources based on your year, make, and model. No hardcoded intervals — every schedule is tailored to your actual rig.</div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Vehicle Profile</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-on">⚪ On-grid</span></div>
+    </div>
+    <p class="feature-desc">Configure your rig with year, make, model, trim, engine, and drivetrain. Supports multiple vehicles per household. Each vehicle gets its own maintenance log, inspection checklist, and mod registry. Vehicle data drives the fuel calculator, load ledger, and maintenance schedule.</p>
+    <div class="table-wrap" style="margin-top:12px;"><table><thead><tr><th>Field</th><th>Example</th><th>Used by</th></tr></thead><tbody>
+      <tr><td>Year / Make / Model</td><td>2014 Jeep Wrangler</td><td>Maintenance lookup, parts search</td></tr>
+      <tr><td>Trim</td><td>Unlimited Rubicon</td><td>Axle and diff identification</td></tr>
+      <tr><td>Engine</td><td>3.6L Pentastar V6</td><td>Oil spec, spark plug intervals</td></tr>
+      <tr><td>Drivetrain</td><td>4WD / NV241OR</td><td>Transfer case fluid lookup</td></tr>
+      <tr><td>Current mileage</td><td>87,450 mi</td><td>Interval calculations</td></tr>
+      <tr><td>GVW</td><td>4,750 lbs</td><td>Load ledger</td></tr>
+      <tr><td>Fuel tank / MPG</td><td>22.5 gal / 17 hwy / 12 off</td><td>Fuel range calculator</td></tr>
+    </tbody></table></div>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Recommended Maintenance Schedule</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-on">⚪ On-grid</span></div>
+    </div>
+    <p class="feature-desc">On vehicle profile creation, Chomp fetches the recommended maintenance schedule from manufacturer service documentation, NHTSA data, and trusted overlanding community sources (iOverlander, Expedition Portal, Rock Auto). Schedule is cached locally for offline reference and reviewed by the user before activation.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li><strong>Sources:</strong> OEM owner manual data, NHTSA service bulletins, community-validated offroad intervals</li>
+      <li><strong>Offroad modifier:</strong> Shorten diff fluid intervals by a configurable % for heavy wheeling use</li>
+      <li><strong>User review:</strong> All fetched intervals shown for confirmation before saving — you own your schedule</li>
+      <li><strong>Manual override:</strong> Any interval can be adjusted and flagged as custom</li>
+      <li><strong>Refresh:</strong> Re-fetch on demand when new TSBs or community data is available</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Maintenance Log</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span></div>
+    </div>
+    <p class="feature-desc">Record all service events with date, mileage, cost, and notes. Intervals populated from your vehicle schedule. Example for a 2014 Jeep JKU 3.6L — yours will differ based on your vehicle profile:</p>
     <div class="table-wrap" style="margin-top:12px;"><table><thead><tr><th>Service</th><th>Interval</th><th>Notes</th></tr></thead><tbody>
-      <tr><td>Engine oil</td><td>5,000 mi</td><td>0W-20 synthetic</td></tr>
-      <tr><td>Front diff fluid</td><td>30,000 mi</td><td>Dana 30 — Mopar fluid</td></tr>
-      <tr><td>Rear diff fluid</td><td>30,000 mi</td><td>Dana 44 — Mopar fluid</td></tr>
+      <tr><td>Engine oil</td><td>5,000 mi</td><td>0W-20 synthetic (Pentastar)</td></tr>
+      <tr><td>Front diff fluid</td><td>30,000 mi</td><td>Dana 30 — Mopar spec</td></tr>
+      <tr><td>Rear diff fluid</td><td>30,000 mi</td><td>Dana 44 — Mopar spec</td></tr>
       <tr><td>Transfer case</td><td>30,000 mi</td><td>NV241 or NV241OR</td></tr>
-      <tr><td>Transmission</td><td>60,000 mi</td><td>545RFE — check hot</td></tr>
+      <tr><td>Transmission</td><td>60,000 mi</td><td>545RFE — check level hot</td></tr>
       <tr><td>Spark plugs</td><td>30,000 mi</td><td>NGK or Champion OEM</td></tr>
       <tr><td>Coolant flush</td><td>5 years</td><td>OAT type — do not mix</td></tr>
     </tbody></table></div>
   </div>
 
-  <div class="feature"><div class="feature-header"><div class="feature-title">Service Interval Reminders</div><div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span></div></div><p class="feature-desc">Mileage- and time-based alerts. Default: warn at 500mi / 30 days before due date. Push notification support.</p></div>
+  <div class="feature"><div class="feature-header"><div class="feature-title">Service Interval Reminders</div><div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span></div></div><p class="feature-desc">Mileage- and time-based alerts derived from your vehicle schedule. Push notification when approaching threshold (default: 500mi / 30 days before due). Upcoming reminders surface automatically in the pre-trip checklist.</p></div>
 
-  <div class="feature"><div class="feature-header"><div class="feature-title">Pre-Trip Vehicle Inspection Checklist</div><div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span></div></div>
-    <p class="feature-desc">Timestamped pass/fail walkaround per trip. Generates a PDF record for insurance if needed.</p>
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Pre-Trip Vehicle Inspection Checklist</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span></div>
+    </div>
+    <p class="feature-desc">Timestamped pass/fail walkaround per trip. Core items are universal; vehicle-specific items are added from your vehicle profile and mod registry. Generates a PDF record for insurance.</p>
     <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
-      <li>Tire PSI (all 5 including spare)</li>
+      <li>Tire PSI — all positions including spare (target PSI from vehicle profile)</li>
       <li>Engine oil, coolant, brake fluid, washer fluid</li>
       <li>All exterior lights functional</li>
       <li>Recovery gear secured and accessible</li>
-      <li>Skid plate bolts tight</li>
-      <li>Ursa Minor latches and hinges</li>
-      <li>Roof rack load secure</li>
+      <li>Camper top / roof rack load secure</li>
+      <li>Any overdue service intervals flagged inline</li>
     </ul>
   </div>
 
-  <div class="feature"><div class="feature-header"><div class="feature-title">Mod & Build Registry</div><div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-both">🟢 Both</span></div></div><p class="feature-desc">Catalog every modification with install date, parts, vendor, torque specs, and photos. Invaluable for resale documentation and insurance claims.</p></div>
+  <div class="feature"><div class="feature-header"><div class="feature-title">Mod &amp; Build Registry</div><div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-both">🟢 Both</span></div></div><p class="feature-desc">Catalog every modification with install date, parts, vendor, torque specs, and photos. Mods can add vehicle-specific items to the pre-trip checklist automatically (e.g. adding a locker adds a locker function check).</p></div>
 
-  <div class="feature"><div class="feature-header"><div class="feature-title">Tire Tracking & Rotation Log</div><div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-both">🟢 Both</span></div></div>
-    <p class="feature-desc">Built for the JK 5-tire rotation pattern including full-size spare. Recommended interval: 5,000–6,000 miles.</p>
-    <pre>Before:  LF → RF → RR → LR → Spare
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Tire Tracking &amp; Rotation Log</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-both">🟢 Both</span></div>
+    </div>
+    <p class="feature-desc">Track individual tires per position with tread depth, age, brand, and rotation history. Rotation pattern configurable: 4-tire or 5-tire with full-size spare.</p>
+    <pre>5-tire pattern (full-size spare in rotation):
+Before:  LF → RF → RR → LR → Spare
 After:   Spare → LF → RF → RR → LR</pre>
   </div>
 
-  <div class="feature"><div class="feature-header"><div class="feature-title">Trail Damage & Incident Log</div><div class="feature-badges"><span class="priority-p3">P3 — Nice to Have</span><span class="conn-off">🔵 Off-grid</span></div></div><p class="feature-desc">Log rock strikes, water crossings, recovery events, and tire events with GPS pin and photo. Useful for warranty claims and post-trip inspection focus.</p></div>
+  <div class="feature"><div class="feature-header"><div class="feature-title">Trail Damage &amp; Incident Log</div><div class="feature-badges"><span class="priority-p3">P3 — Nice to Have</span><span class="conn-off">🔵 Off-grid</span></div></div><p class="feature-desc">Log rock strikes, water crossings, recovery events, and tire events with GPS pin and photo. Useful for warranty claims and post-trip inspection focus areas.</p></div>
 </div>
-
 <!-- MEDIA -->
 <div class="page" id="page-media">
   <h1>Media Logging</h1>
@@ -824,6 +879,90 @@ After:   Spare → LF → RF → RR → LR</pre>
   <pre>Edit markdown → git commit → auto-deploy
   → Chomp app Help section (docs viewer)
   → Community website (Docusaurus / GitHub Pages)</pre>
+</div>
+
+<!-- MEAL PLANNING -->
+<div class="page" id="page-meals">
+  <h1>Meal Planning</h1>
+  <p class="page-subtitle">Off-grid meal recommendations, shopping lists, and nutrition planning for multi-day overlanding trips.</p>
+
+  <div class="callout"><strong>Off-grid first:</strong> All meal plans are designed around no-refrigeration or minimal-refrigeration cooking. Recommendations account for your cooking setup, trip duration, number of people, and dietary preferences.</div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Trip Meal Planner</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span></div>
+    </div>
+    <p class="feature-desc">Generate a complete meal plan for a trip based on duration, headcount, cooking setup, and dietary preferences. Meals are assigned to days and categorized by prep complexity. Fully viewable offline after generation.</p>
+    <div class="table-wrap" style="margin-top:12px;"><table><thead><tr><th>Input</th><th>Example</th></tr></thead><tbody>
+      <tr><td>Trip duration</td><td>5 days</td></tr>
+      <tr><td>People</td><td>2 adults</td></tr>
+      <tr><td>Cooking setup</td><td>2-burner propane, cast iron, no refrigeration</td></tr>
+      <tr><td>Dietary preferences</td><td>No restrictions / vegetarian / gluten-free</td></tr>
+      <tr><td>Resupply stops</td><td>Day 3 — town with grocery store</td></tr>
+      <tr><td>Pets</td><td>1 dog (auto-added from pet profile)</td></tr>
+    </tbody></table></div>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">AI Meal Recommendations</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-on">⚪ On-grid</span></div>
+    </div>
+    <p class="feature-desc">Claude-powered meal suggestions tailored to overlanding constraints: minimal water use, no refrigeration required, high calorie density for active days, simple one-pot prep. Suggestions account for elevation (affects boiling time), season, and available cooking gear.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li><strong>Breakfast ideas:</strong> Oatmeal with dried fruit, breakfast burritos, granola + powdered milk</li>
+      <li><strong>Lunch ideas:</strong> Tortillas + nut butter, hard cheese + crackers, summer sausage, no-cook options</li>
+      <li><strong>Dinner ideas:</strong> One-pot pasta, freeze-dried backpacking meals, cast iron chili, foil packet meals</li>
+      <li><strong>Snacks:</strong> Trail mix, jerky, energy bars, dried mango — calorie-dense, no prep</li>
+      <li>Recommendations cached after generation — available fully offline</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Shopping List Generator</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span></div>
+    </div>
+    <p class="feature-desc">Generates a consolidated, quantity-calculated shopping list from the meal plan. Items grouped by store section (produce, dry goods, meats, camping supplies). Accounts for resupply stops — splits list into pre-trip and mid-trip purchases. Shareable with your co-pilot before departure.</p>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Meal Templates & Favourites</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-both">🟢 Both</span></div>
+    </div>
+    <p class="feature-desc">Save meals you love as favourites. Build reusable meal plan templates per trip type (2-day summer, 5-day winter, photography mission). Favourites sync across household users so both of you can contribute to the meal rotation.</p>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Cooking Setup Profile</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-both">🟢 Both</span></div>
+    </div>
+    <p class="feature-desc">Configure your camp kitchen once — stove type, fuel (propane / butane / wood / alcohol), cookware (cast iron, titanium, nonstick), cooler type (none / ice / 12V fridge). Meal recommendations are filtered to what you can actually cook. Fuel consumption estimates added to the gear pack list.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>Propane canister consumption estimated per meal plan</li>
+      <li>Cast iron flagged for weight in load ledger</li>
+      <li>12V fridge detected from vehicle electrical mods if present</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Calorie & Nutrition Tracker</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-both">🟢 Both</span></div>
+    </div>
+    <p class="feature-desc">Estimate daily calorie targets based on trip activity level (light / moderate / heavy hiking and recovery work). Shows per-person daily totals for the meal plan. Useful for multi-day trips where energy management matters — especially at elevation in the PNW.</p>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Community Recipe Library</div>
+      <div class="feature-badges"><span class="priority-p3">P3 — Nice to Have</span><span class="conn-on">⚪ On-grid</span></div>
+    </div>
+    <p class="feature-desc">Community-contributed camp recipes with ratings, photos, and difficulty ratings. Filterable by cooking method, dietary restriction, and trip length. Submit your own recipes and build a reputation in the Chomp community.</p>
+  </div>
 </div>
 
 <!-- USERS & IDENTITY -->
@@ -1035,7 +1174,7 @@ Submitted by: [Username]</pre>
 </main>
 
 <script>
-const pages = ['home','trip','safety','gear','maintenance','media','architecture','users','pets','community'];
+const pages = ['home','trip','safety','gear','maintenance','meals','media','architecture','users','pets','social','monetization','community'];
 
 function showPage(id) {
   pages.forEach(p => {
@@ -1068,10 +1207,18 @@ const index = [
   {page:'gear', title:'Camera Kit Tracker', section:'Gear & Packing', text:'D850 Air 2s Insta360 Ace Pro 2 battery SD card lens checklist'},
   {page:'gear', title:'Ursa Minor Camper Config', section:'Gear & Packing', text:'ursa minor camper top storage map JKU sleeping platform cabinet'},
   {page:'gear', title:'Recovery Gear Checklist', section:'Gear & Packing', text:'hi-lift maxtrax kinetic rope shackles shovel first aid IFAK recovery'},
-  {page:'maintenance', title:'Maintenance Log', section:'Vehicle Maintenance', text:'oil diff fluid transfer case dana 44 service intervals mileage JK'},
-  {page:'maintenance', title:'Pre-Trip Inspection', section:'Vehicle Maintenance', text:'tire PSI fluids lights skid plates ursa minor latches walkaround'},
+  {page:'maintenance', title:'Vehicle Profile', section:'Vehicle Maintenance', text:'year make model trim engine drivetrain mileage GVW fuel tank MPG configurable'},
+  {page:'maintenance', title:'Recommended Maintenance Schedule', section:'Vehicle Maintenance', text:'maintenance schedule internet fetch NHTSA OEM TSB offroad intervals'},
+  {page:'maintenance', title:'Maintenance Log', section:'Vehicle Maintenance', text:'oil diff fluid transfer case dana 44 service intervals mileage'},
+  {page:'maintenance', title:'Pre-Trip Inspection', section:'Vehicle Maintenance', text:'tire PSI fluids lights skid plates roof rack walkaround'},
   {page:'maintenance', title:'Mod & Build Registry', section:'Vehicle Maintenance', text:'modifications lift bumpers skids lockers parts vendor torque specs'},
-  {page:'maintenance', title:'Tire Rotation Log', section:'Vehicle Maintenance', text:'tire rotation 5-tire pattern full-size spare JK tread depth'},
+  {page:'maintenance', title:'Tire Rotation Log', section:'Vehicle Maintenance', text:'tire rotation 5-tire pattern full-size spare tread depth'},
+  {page:'meals', title:'Trip Meal Planner', section:'Meal Planning', text:'meal plan trip duration headcount cooking setup dietary preferences'},
+  {page:'meals', title:'AI Meal Recommendations', section:'Meal Planning', text:'off-grid meals no refrigeration one-pot breakfast lunch dinner snacks Claude AI'},
+  {page:'meals', title:'Shopping List Generator', section:'Meal Planning', text:'shopping list grocery quantities resupply pre-trip'},
+  {page:'meals', title:'Cooking Setup Profile', section:'Meal Planning', text:'stove propane butane cast iron cooler 12V fridge camp kitchen'},
+  {page:'meals', title:'Calorie & Nutrition Tracker', section:'Meal Planning', text:'calories nutrition daily target activity level elevation energy'},
+  {page:'meals', title:'Community Recipe Library', section:'Meal Planning', text:'camp recipes community contributed ratings photos cooking method'},
   {page:'media', title:'Shot Log with GPS', section:'Media Logging', text:'shot log GPS tag D850 Air 2s Insta360 focal length Lightroom timestamp'},
   {page:'media', title:'Drone Flight Log', section:'Media Logging', text:'Air 2s drone flight log battery GPS duration altitude wind pre-flight'},
   {page:'media', title:'SD Card Tracker', section:'Media Logging', text:'SD card storage backed up cleared format microSD CFexpress'},
@@ -1089,6 +1236,17 @@ const index = [
   {page:'pets', title:'Pet-Safe Trail Flags', section:'Pet Care', text:'pet friendly trail hazard wildlife bear porcupine toxic plants'},
   {page:'pets', title:'Heat & Safety Alerts', section:'Pet Care', text:'heat alert temperature pet vehicle safety'},
   {page:'pets', title:'Nearest Emergency Vet', section:'Pet Care', text:'emergency vet veterinary clinic GPS nearest'},
+  {page:'social', title:'Instagram Integration', section:'Social Platforms', text:'instagram share trip highlights story post hashtags photos PRO'},
+  {page:'social', title:'Facebook Integration', section:'Social Platforms', text:'facebook groups jeep clubs trail conditions trip report PRO'},
+  {page:'social', title:'Discord Integration', section:'Social Platforms', text:'discord webhook channel fire alerts trip updates safety check-in PRO'},
+  {page:'social', title:'Slack Integration', section:'Social Platforms', text:'slack workspace slash command fleet maintenance TEAM'},
+  {page:'social', title:'iOverlander Sync', section:'Social Platforms', text:'ioverlander trail community campsite reports publish PRO'},
+  {page:'social', title:'YouTube Metadata', section:'Social Platforms', text:'youtube video description chapters timestamps hashtags PRO'},
+  {page:'social', title:'Social Share Cards', section:'Social Platforms', text:'share card trip map stats image FREE'},
+  {page:'monetization', title:'Free Tier', section:'Free vs Paid', text:'free solo 1 user vehicle safety offline maps trip planning'},
+  {page:'monetization', title:'Pro Tier', section:'Free vs Paid', text:'pro $6 household 2 users AI maintenance meals social media sharing'},
+  {page:'monetization', title:'Team Tier', section:'Free vs Paid', text:'team $18 club fleet 20 users admin slack API branding'},
+  {page:'monetization', title:'Feature Tier Map', section:'Free vs Paid', text:'free paid tier map features pricing comparison'},
   {page:'community', title:'Trail Report Template', section:'Community', text:'trail report condition campsite water signal PNW overlanding'},
 ];
 
