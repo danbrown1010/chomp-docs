@@ -436,6 +436,23 @@ pre {
 .tier-team { background: #111; color: #f97316; font-family: 'Ubuntu Mono', monospace; font-size: 10px; padding: 2px 7px; border-radius: 3px; white-space: nowrap; border: 1px solid #444; letter-spacing: 0.04em; }
 .tier-note { font-size: 12px; color: var(--muted); font-style: italic; margin-top: 6px; }
 
+
+/* ── THEME PICKER ── */
+.theme-picker { position:fixed; bottom:20px; right:20px; z-index:200; }
+.theme-btn { background:var(--forest); color:var(--sage); border:1px solid var(--forest-light); border-radius:50%; width:44px; height:44px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-family:"Material Symbols Outlined"; font-size:20px; font-variation-settings:"FILL" 0,"wght" 300,"GRAD" 0,"opsz" 24; box-shadow:0 2px 8px rgba(0,0,0,0.3); }
+.theme-panel { display:none; position:absolute; bottom:52px; right:0; background:#1a1a1a; border:1px solid #333; border-radius:10px; padding:16px; width:260px; box-shadow:0 8px 24px rgba(0,0,0,0.4); }
+.theme-panel.open { display:block; }
+.theme-panel h4 { font-family:"Ubuntu",sans-serif; font-size:13px; color:#ccc; margin-bottom:12px; letter-spacing:0.05em; }
+.theme-row { display:flex; gap:8px; margin-bottom:10px; align-items:center; }
+.theme-row label { font-family:"Ubuntu Mono",monospace; font-size:11px; color:#888; width:80px; }
+.theme-row input[type=color] { width:36px; height:28px; border:none; border-radius:4px; cursor:pointer; background:none; padding:0; }
+.theme-swatches { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:12px; }
+.swatch { width:28px; height:28px; border-radius:50%; cursor:pointer; border:2px solid transparent; transition:border-color 0.15s; flex-shrink:0; }
+.swatch:hover,.swatch.active { border-color:#fff; }
+.theme-logo-row { margin-bottom:10px; }
+.theme-logo-row input[type=text] { width:100%; background:#111; border:1px solid #333; color:#ccc; padding:6px 8px; border-radius:4px; font-family:"Ubuntu Mono",monospace; font-size:12px; margin-top:4px; }
+.theme-reset { font-family:"Ubuntu Mono",monospace; font-size:11px; color:#666; cursor:pointer; text-decoration:underline; display:block; text-align:center; margin-top:8px; }
+
 mark { background: #fff3ea; padding: 0 2px; border-radius: 2px; color: inherit; }
 
 /* ── MOBILE ── */
@@ -463,7 +480,7 @@ mark { background: #fff3ea; padding: 0 2px; border-radius: 2px; color: inherit; 
   <button class="menu-toggle" onclick="toggleSidebar()">
     <span class="ms" style="font-size:22px;color:var(--sage)">menu</span>
   </button>
-  <div class="topbar-logo">CHOMP<span>.</span></div>
+  <div class="topbar-logo" id="logoText">CHOMP.</div>
   <div class="topbar-sub">Your Rig · Your Adventure · Pacific Northwest</div>
   <div class="topbar-search">
     <span class="ms" style="font-size:16px;color:var(--forest-light)">search</span>
@@ -485,7 +502,8 @@ mark { background: #fff3ea; padding: 0 2px; border-radius: 2px; color: inherit; 
     <a class="nav-item" onclick="showPage('maintenance')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">build</span>Vehicle Maintenance</a>
     <a class="nav-item" onclick="showPage('meals')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">restaurant</span>Meal Planning</a>
     <a class="nav-item" onclick="showPage('media')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">photo_camera</span>Media Logging</a>
-    <a class="nav-item" onclick="showPage('fishing')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">phishing</span>Fish &amp; Game</a>
+    <a class="nav-item" onclick="showPage('telemetry')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">sensors</span>Vehicle Telemetry</a>
+
   </div>
   <div class="nav-section">
     <div class="nav-section-label">Project</div>
@@ -494,6 +512,10 @@ mark { background: #fff3ea; padding: 0 2px; border-radius: 2px; color: inherit; 
     <a class="nav-item" onclick="showPage('pets')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">pets</span>Pet Care</a>
     <a class="nav-item" onclick="showPage('social')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">share</span>Social Platforms</a>
     <a class="nav-item" onclick="showPage('comms')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">cell_tower</span>Comms &amp; Network</a>
+    <a class="nav-item" onclick="showPage('survival')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">emergency</span>Survival &amp; Emergency</a>
+    <a class="nav-item" onclick="showPage('badges')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">military_tech</span>Badges &amp; Recognition</a>
+    <a class="nav-item" onclick="showPage('tripgroups')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">groups</span>Trip Groups</a>
+    <a class="nav-item" onclick="showPage('reservations')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">hotel</span>Reservations</a>
     <a class="nav-item" onclick="showPage('docs')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">folder_shared</span>Travel Documents</a>
     <a class="nav-item" onclick="showPage('knowledge')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">auto_stories</span>Knowledge Base</a>
     <a class="nav-item" onclick="showPage('campbot')"><span class="ms" style="font-size:16px;margin-right:8px;opacity:0.7">notifications_active</span>Campsite Bot</a>
@@ -527,43 +549,139 @@ mark { background: #fff3ea; padding: 0 2px; border-radius: 2px; color: inherit; 
   </div>
 
   <div class="stat-grid">
-    <div class="stat-card"><div class="stat-num">93</div><div class="stat-label">Total features</div></div>
+    <div class="stat-card"><div class="stat-num">118</div><div class="stat-label">Total features</div></div>
     <div class="stat-card"><div class="stat-num">22</div><div class="stat-label">P1 core</div></div>
-    <div class="stat-card"><div class="stat-num">16</div><div class="stat-label">Feature sections</div></div>
+    <div class="stat-card"><div class="stat-num">22</div><div class="stat-label">Feature sections</div></div>
     <div class="stat-card"><div class="stat-num" style="color:var(--ember);font-size:20px;padding-top:4px">FREE · PRO · TEAM</div><div class="stat-label">Pricing tiers</div></div>
   </div>
 
   <h2 style="font-family:'Ubuntu',sans-serif;font-size:22px;font-weight:700;color:var(--forest);margin:0 0 16px;">Feature sections</h2>
   <div class="section-grid">
     <a class="section-card" onclick="showPage('trip')">
-    <span class="section-card-icon">map</span>
+      <span class="section-card-icon">map</span>
       <h3>Trip Planning</h3>
-      <p>Offline maps, campsite planner, GPS track logging, weather, permits, and HA automation.</p>
-      <div class="section-card-meta">3 P1 · 4 P2 · 1 P3</div>
+      <p>Offline maps, campsite planner, GPS logging, weather, permits, and HA automation.</p>
+      <div class="section-card-meta">Trip · Navigation · Planning</div>
     </a>
     <a class="section-card" onclick="showPage('safety')">
-    <span class="section-card-icon">local_fire_department</span>
-      <h3>Safety & Conditions</h3>
-      <p>Fire perimeters, evacuation zones, burn bans, AQI, escape routes — cached for off-grid use.</p>
-      <div class="section-card-meta">3 P1 · 3 P2 · 1 P3</div>
+      <span class="section-card-icon">local_fire_department</span>
+      <h3>Safety &amp; Conditions</h3>
+      <p>Fire perimeters, evacuation zones, burn bans, AQI, private land alerts, escape routes.</p>
+      <div class="section-card-meta">Safety · Alerts · Off-grid</div>
     </a>
     <a class="section-card" onclick="showPage('gear')">
-    <span class="section-card-icon">backpack</span>
-      <h3>Gear & Packing</h3>
-      <p>Pack lists, Ursa Minor storage map, camera kit tracker, water/food supply, recovery gear.</p>
-      <div class="section-card-meta">3 P1 · 2 P2 · 1 P3</div>
+      <span class="section-card-icon">backpack</span>
+      <h3>Gear &amp; Packing</h3>
+      <p>Pack lists, storage map, camera kit, water supply, recovery gear, fish &amp; game.</p>
+      <div class="section-card-meta">Gear · Checklists · Fish &amp; Game</div>
     </a>
     <a class="section-card" onclick="showPage('maintenance')">
-    <span class="section-card-icon">build</span>
+      <span class="section-card-icon">build</span>
       <h3>Vehicle Maintenance</h3>
-      <p>Configurable vehicle profile, internet-sourced maintenance schedules, mod registry, pre-trip inspection, tire rotation log.</p>
-      <div class="section-card-meta">3 P1 · 2 P2 · 1 P3</div>
+      <p>Configurable vehicle profile, AI-sourced maintenance schedule, mod registry, inspection.</p>
+      <div class="section-card-meta">Maintenance · Mods · Tires</div>
+    </a>
+    <a class="section-card" onclick="showPage('meals')">
+      <span class="section-card-icon">restaurant</span>
+      <h3>Meal Planning</h3>
+      <p>AI off-grid meal recommendations, shopping lists, cooking setup, calorie tracker.</p>
+      <div class="section-card-meta">Meals · AI · Off-grid cooking</div>
     </a>
     <a class="section-card" onclick="showPage('media')">
-    <span class="section-card-icon">photo_camera</span>
+      <span class="section-card-icon">photo_camera</span>
       <h3>Media Logging</h3>
-      <p>Shot logs with GPS tagging, drone flight records, SD card tracker, Lightroom sync.</p>
-      <div class="section-card-meta">2 P1 · 3 P2 · 1 P3</div>
+      <p>Shot logs with GPS tagging, drone flight records, SD tracker, Lightroom sync.</p>
+      <div class="section-card-meta">Photos · Drone · Post-trip sync</div>
+    </a>
+    <a class="section-card" onclick="showPage('telemetry')">
+      <span class="section-card-icon">sensors</span>
+      <h3>Vehicle Telemetry</h3>
+      <p>Temperature zones, humidity, EcoFlow battery dashboard, and lighting control.</p>
+      <div class="section-card-meta">Sensors · EcoFlow · Lighting</div>
+    </a>
+    <a class="section-card" onclick="showPage('comms')">
+      <span class="section-card-icon">cell_tower</span>
+      <h3>Comms &amp; Network</h3>
+      <p>Starlink, cellular hotspots, satellite communicators, Wi-Fi extenders, CB &amp; Ham.</p>
+      <div class="section-card-meta">Starlink · Cellular · inReach</div>
+    </a>
+    <a class="section-card" onclick="showPage('survival')">
+      <span class="section-card-icon">emergency</span>
+      <h3>Survival &amp; Emergency</h3>
+      <p>SOS broadcast, AI survival expert, tactics library, vendor contacts, action plans.</p>
+      <div class="section-card-meta">SOS · AI · Offline tactics</div>
+    </a>
+    <a class="section-card" onclick="showPage('users')">
+      <span class="section-card-icon">manage_accounts</span>
+      <h3>Users &amp; Identity</h3>
+      <p>Google OAuth, household profiles, multi-tenant architecture for community rollout.</p>
+      <div class="section-card-meta">Auth · Profiles · Multi-tenant</div>
+    </a>
+    <a class="section-card" onclick="showPage('pets')">
+      <span class="section-card-icon">pets</span>
+      <h3>Pet Care</h3>
+      <p>Pet profiles, pack lists, food calculator, vet records, heat alerts, trail flags.</p>
+      <div class="section-card-meta">Pets · Safety · Vets</div>
+    </a>
+    <a class="section-card" onclick="showPage('badges')">
+      <span class="section-card-icon">military_tech</span>
+      <h3>Badges &amp; Recognition</h3>
+      <p>Earn trail badges, skill badges, community recognition, and build your public profile.</p>
+      <div class="section-card-meta">Badges · Profile · Leaderboards</div>
+    </a>
+    <a class="section-card" onclick="showPage('tripgroups')">
+      <span class="section-card-icon">groups</span>
+      <h3>Trip Groups</h3>
+      <p>Trip partners, spontaneous groups, live convoy tracking, shared journals, check-ins.</p>
+      <div class="section-card-meta">Convoy · Social · Safety</div>
+    </a>
+    <a class="section-card" onclick="showPage('reservations')">
+      <span class="section-card-icon">hotel</span>
+      <h3>Reservations</h3>
+      <p>Store campsite, hotel, and Airbnb bookings. Itinerary builder and email import.</p>
+      <div class="section-card-meta">Bookings · Itinerary · Alerts</div>
+    </a>
+    <a class="section-card" onclick="showPage('docs')">
+      <span class="section-card-icon">folder_shared</span>
+      <h3>Travel Documents</h3>
+      <p>Insurance vault, vehicle docs, emergency contacts, float plan, permit manager.</p>
+      <div class="section-card-meta">Insurance · Permits · Emergency</div>
+    </a>
+    <a class="section-card" onclick="showPage('knowledge')">
+      <span class="section-card-icon">auto_stories</span>
+      <h3>Knowledge Base</h3>
+      <p>Upload manuals and specs, AI search, web capture, NotebookLM import, document chat.</p>
+      <div class="section-card-meta">RAG · AI · Offline search</div>
+    </a>
+    <a class="section-card" onclick="showPage('campbot')">
+      <span class="section-card-icon">notifications_active</span>
+      <h3>Campsite Bot</h3>
+      <p>Monitor Recreation.gov, Reserve America, and Hipcamp — alert when sites open up.</p>
+      <div class="section-card-meta">Alerts · Recreation.gov · Bot</div>
+    </a>
+    <a class="section-card" onclick="showPage('social')">
+      <span class="section-card-icon">share</span>
+      <h3>Social Platforms</h3>
+      <p>Instagram, Facebook, Discord, OnX Offroad, iOverlander, YouTube metadata.</p>
+      <div class="section-card-meta">Instagram · Discord · OnX</div>
+    </a>
+    <a class="section-card" onclick="showPage('monetization')">
+      <span class="section-card-icon">sell</span>
+      <h3>Free vs Paid</h3>
+      <p>Three tiers: Free, Pro ($6/mo), Team ($18/mo). Safety always free.</p>
+      <div class="section-card-meta">Free · Pro · Team</div>
+    </a>
+    <a class="section-card" onclick="showPage('architecture')">
+      <span class="section-card-icon">schema</span>
+      <h3>Architecture</h3>
+      <p>Offline-first storage strategy, data sources, Home Assistant, content pipeline.</p>
+      <div class="section-card-meta">PWA · IndexedDB · Cache API</div>
+    </a>
+    <a class="section-card" onclick="showPage('community')">
+      <span class="section-card-icon">group</span>
+      <h3>Community</h3>
+      <p>Trail reports, campsite notes, PNW resources, and contribution guidelines.</p>
+      <div class="section-card-meta">Trails · Reports · PNW</div>
     </a>
   </div>
 
@@ -681,6 +799,24 @@ mark { background: #fff3ea; padding: 0 2px; border-radius: 2px; color: inherit; 
   <div class="feature"><div class="feature-header"><div class="feature-title">Push Alerts for New Fires</div><div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-on">⚪ On-grid</span></div></div><p class="feature-desc">Notify when a new fire ignition or perimeter expansion is detected within a configurable radius of the trip area (default: 25 miles).</p></div>
 
   <div class="feature"><div class="feature-header"><div class="feature-title">NOAA Red Flag Warning Integration</div><div class="feature-badges"><span class="priority-p3">P3 — Nice to Have</span><span class="conn-on">⚪ On-grid</span></div></div><p class="feature-desc">Surface active Red Flag Warnings (high wind + low humidity) for the trip area. Informs campfire decisions even where no formal ban is in effect. Source: NOAA NWS API.</p></div>
+  <div class="feature">
+    <div class="feature-header">
+      <div class="feature-title">Private Land Boundary Alert</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">Real-time alert when your GPS position is approaching or crossing a private land boundary. Uses PAD-US (Protected Areas Database), BLM surface ownership data, and OnX land layers (if connected) to warn you before you trespass. Critical in the PNW where public and private land boundaries are frequently unmarked.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li><strong>Proximity alert:</strong> Warning at configurable distance from private boundary (default 500ft)</li>
+      <li><strong>Boundary overlay:</strong> Private / public / BLM / tribal / state land displayed on offline base map</li>
+      <li><strong>Alert types:</strong> Approaching (yellow) · At boundary (orange) · Crossed (red)</li>
+      <li><strong>Data sources:</strong> PAD-US federal dataset, BLM GeoCommunicator, OnX land layer if connected</li>
+      <li><strong>Offline:</strong> Land boundary GeoJSON cached at trip download alongside map tiles (~30–80MB for PNW trip area)</li>
+      <li><strong>Posted land flags:</strong> Community-reported No Trespassing signs pinned to map by other Chomp users</li>
+      <li><strong>Route pre-check:</strong> Before departure, scan planned route for private land crossings and flag for review</li>
+    </ul>
+    <div class="callout" style="margin-top:12px;"><strong>PNW context:</strong> Eastern WA and the Okanogan have significant private inholdings within national forest boundaries. The Cascades have checkerboard timber company land interspersed with USFS. This feature is especially high-value in those areas.</div>
+  </div>
+
 </div>
 
 <!-- GEAR -->
@@ -1865,6 +2001,349 @@ After:   Spare → LF → RF → RR → LR</pre>
   </div>
 </div>
 
+<div class="page" id="page-badges">
+  <h1>Badges &amp; Recognition</h1>
+  <p class="page-subtitle">Earn badges for trails completed, experiences logged, and community contributions. Build your overlanding reputation and show off your adventures.</p>
+
+  <div class="callout"><strong>Earned, not bought:</strong> Every badge is tied to verified activity — GPS-tracked trips, confirmed catches, community contributions. No pay-to-win. Your profile shows what you've actually done.</div>
+
+  <div class="feature">
+    <div class="feature-header"><div class="feature-title">Trail Badges</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span><span class="tier-free">FREE</span></div>
+    </div>
+    <p class="feature-desc">Automatically awarded when a GPS-verified trip matches a known trail or region. Badges stack — complete a trail multiple times in different seasons to earn seasonal variants.</p>
+    <div class="table-wrap" style="margin-top:12px;"><table><thead><tr><th>Badge</th><th>Criteria</th><th>Tier</th></tr></thead><tbody>
+      <tr><td>🏔 Summit Chaser</td><td>Camp above 5,000ft elevation</td><td>Free</td></tr>
+      <tr><td>🌲 PNW Pioneer</td><td>10 trips in Washington or Oregon</td><td>Free</td></tr>
+      <tr><td>❄️ Winter Warrior</td><td>Overnight trip Dec–Feb with temps below 25°F</td><td>Free</td></tr>
+      <tr><td>🔥 Fire Season Veteran</td><td>Trip during active fire watch with AQI &gt;100</td><td>Free</td></tr>
+      <tr><td>🌊 River Crosser</td><td>Log 5 water crossing events</td><td>Free</td></tr>
+      <tr><td>🦅 Solo Expeditioner</td><td>3-night solo trip (1 user on trip)</td><td>Free</td></tr>
+      <tr><td>⭐ Century Club</td><td>100 total trip days logged</td><td>Pro</td></tr>
+      <tr><td>🗺 Trailblazer</td><td>First Chomp user to log a new trail</td><td>Pro</td></tr>
+    </tbody></table></div>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header"><div class="feature-title">Gear &amp; Skill Badges</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-both">🟢 Both</span><span class="tier-free">FREE</span></div>
+    </div>
+    <p class="feature-desc">Recognise hands-on skills and gear mastery logged within the app.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>🔧 <strong>Wrench Monkey</strong> — 25 maintenance log entries across 2+ years</li>
+      <li>📷 <strong>Golden Hour Hunter</strong> — 50 shot logs tagged at sunrise or sunset</li>
+      <li>🎣 <strong>Catch &amp; Release</strong> — 25 fish logged as released</li>
+      <li>🚁 <strong>Aerial Artist</strong> — 20 drone flight logs</li>
+      <li>🛠 <strong>Builder</strong> — 10+ mods in the build registry</li>
+      <li>🍳 <strong>Camp Chef</strong> — 15 different meals cooked from the meal log</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header"><div class="feature-title">Community Badges</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-on">⚪ On-grid</span><span class="tier-free">FREE</span></div>
+    </div>
+    <p class="feature-desc">Awarded for contributions that make the community better — trail reports, campsite reviews, rescues assisted.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>📋 <strong>Scout</strong> — 10 trail condition reports submitted</li>
+      <li>🏕 <strong>Camphost</strong> — 5 campsite reviews with photos</li>
+      <li>🤝 <strong>Good Samaritan</strong> — logged an assisted recovery event</li>
+      <li>🌐 <strong>Map Maker</strong> — 3 new trails added to community database</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header"><div class="feature-title">Public Profile &amp; Badge Display</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-on">⚪ On-grid</span><span class="tier-free">FREE</span></div>
+    </div>
+    <p class="feature-desc">Your public Chomp profile shows your badge wall, rig details, home region, trip stats, and recent activity. Share your profile link on Instagram, Discord, or JKForum. Opt-in only — private by default.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>Badge wall with earned date and criteria tooltip</li>
+      <li>Trip stats: total days, miles, states, elevation gained</li>
+      <li>Featured trip: pin your best adventure to the top</li>
+      <li>Rig showcase: pull from vehicle profile and mod registry</li>
+      <li>Shareable URL: chomp.community/u/yourusername</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header"><div class="feature-title">Leaderboards</div>
+      <div class="feature-badges"><span class="priority-p3">P3 — Nice to Have</span><span class="conn-on">⚪ On-grid</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">Regional leaderboards for trip days, trail reports, catch counts, and badge counts. Filter by region (PNW, Cascades, Okanogan) and time period. Friendly competition to motivate getting out more.</p>
+  </div>
+</div>
+<div class="page" id="page-tripgroups">
+  <h1>Trip Groups &amp; Partners</h1>
+  <p class="page-subtitle">Create spontaneous travel groups, invite trip partners, coordinate convoys, and share trip plans in real time.</p>
+
+  <div class="feature">
+    <div class="feature-header"><div class="feature-title">Trip Partner Invite</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-on">⚪ On-grid</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">Add any Chomp user as a trip partner on any active or planned trip. Partners get read access to the trip plan, waypoints, and live GPS track. Partners can contribute waypoints, notes, and media logs to the shared trip journal.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>Invite by username, email, or shareable trip link</li>
+      <li>Non-Chomp friends can view a read-only trip page without an account</li>
+      <li>Partner roles: Co-pilot (full edit), Navigator (view + waypoints), Follower (view only)</li>
+      <li>Partners see the trip in their own app with their own checklist state</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header"><div class="feature-title">Spontaneous Trip Groups</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-on">⚪ On-grid</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">Create a trip group on the fly — name it, set a meeting point, share a join link. Anyone with the link can request to join. Ideal for impromptu runs organised through Discord or JKForum where you want to coordinate without requiring everyone to be Chomp users.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>One-tap group creation from any planned trip</li>
+      <li>Join link shareable via SMS, Discord, Instagram DM</li>
+      <li>Group capacity limit configurable (e.g. max 8 rigs)</li>
+      <li>Group chat integrated with the trip — stays in context</li>
+      <li>Meeting point with ETA countdown for each member</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header"><div class="feature-title">Live Convoy Tracking</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-both">🟢 Both</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">See all trip partner locations on the shared map in real time. Distance and ETA between vehicles. Sweep vehicle can see if anyone has stopped unexpectedly. Works on cellular — degrades to last-known position when off-grid, with manual position updates via satellite communicator.</p>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header"><div class="feature-title">Shared Trip Journal</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-both">🟢 Both</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">All trip partners contribute to a single shared journal — waypoints, notes, shot logs, and highlights merge into one trip record. Conflict resolution: last-write-wins with a change log. Post-trip, the combined journal is the shared memory of the trip.</p>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header"><div class="feature-title">Group Safety Check-In</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span><span class="tier-free">FREE</span></div>
+    </div>
+    <p class="feature-desc">Scheduled check-ins for the whole group. Trip lead sets a check-in schedule — each member confirms OK on their device. If a member misses check-in, the trip lead is alerted. Works via satellite communicator when off-grid. Available on Free tier because it is a safety feature.</p>
+  </div>
+</div>
+<div class="page" id="page-reservations">
+  <h1>Reservations &amp; Lodging</h1>
+  <p class="page-subtitle">Store all booking details for a trip — campsite reservations, hotels, Airbnbs, and any other accommodation. Sometimes you need a real bed and a hot shower.</p>
+
+  <div class="feature">
+    <div class="feature-header"><div class="feature-title">Reservation Wallet</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-off">🔵 Off-grid</span><span class="tier-free">FREE</span></div>
+    </div>
+    <p class="feature-desc">Store all booking confirmations for a trip in one place — confirmation numbers, check-in times, addresses, and contact details. Cached fully offline. All reservation types supported.</p>
+    <div class="table-wrap" style="margin-top:12px;"><table><thead><tr><th>Type</th><th>Fields stored</th></tr></thead><tbody>
+      <tr><td>Campsite (Recreation.gov / Reserve America)</td><td>Confirmation #, site #, dates, loop, rules</td></tr>
+      <tr><td>Hotel / Motel</td><td>Confirmation #, address, check-in/out, rate, loyalty #</td></tr>
+      <tr><td>Airbnb / VRBO</td><td>Confirmation code, host contact, address, door code, Wi-Fi</td></tr>
+      <tr><td>Dispersed / free camping</td><td>GPS pin, access notes, permit if required</td></tr>
+      <tr><td>Marina / RV Park</td><td>Slip/site #, hookup type, shore power amps</td></tr>
+    </tbody></table></div>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header"><div class="feature-title">Trip Itinerary Builder</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span><span class="tier-free">FREE</span></div>
+    </div>
+    <p class="feature-desc">Combine reservations, waypoints, and driving segments into a day-by-day itinerary. Shows where you're sleeping each night, drive time between stops, and any reservations due that day. Shared automatically with trip partners.</p>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header"><div class="feature-title">Confirmation Email Import</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-on">⚪ On-grid</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">Forward a booking confirmation email to your Chomp address and it auto-parses the key details — dates, confirmation number, address, contact — and adds it to the correct trip. Supports Recreation.gov, Hipcamp, Airbnb, major hotel chains, and generic confirmation formats.</p>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header"><div class="feature-title">Check-In Reminders</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-both">🟢 Both</span><span class="tier-free">FREE</span></div>
+    </div>
+    <p class="feature-desc">Push reminders before each check-in — 24 hours ahead and 2 hours ahead. For campsite arrivals, reminder includes the access road condition from the latest community report.</p>
+  </div>
+</div>
+<div class="page" id="page-telemetry">
+  <h1>Vehicle Telemetry</h1>
+  <p class="page-subtitle">Monitor and log temperature zones, humidity, battery systems, and lighting control across your entire rig. Your vehicle as a connected platform.</p>
+
+  <div class="callout"><strong>Sensor philosophy:</strong> Chomp connects to what you already have — Bluetooth and Wi-Fi sensors, EcoFlow battery systems, and smart lighting controllers. No proprietary hardware required. Add sensors incrementally as your build evolves.</div>
+
+  <div class="feature">
+    <div class="feature-header"><div class="feature-title">Temperature Zone Monitor</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">Monitor temperature across configurable zones throughout the rig. Each zone is a named sensor — Bluetooth or Wi-Fi — that reports in real time and logs historically. Alerts when any zone exceeds configurable thresholds.</p>
+    <div class="table-wrap" style="margin-top:12px;"><table><thead><tr><th>Zone</th><th>Sensor type</th><th>Alert thresholds</th></tr></thead><tbody>
+      <tr><td>Outside ambient</td><td>BT/Wi-Fi sensor, weather API</td><td>Below 20°F, above 95°F</td></tr>
+      <tr><td>Cabin interior</td><td>BT sensor (dash mount)</td><td>Above 90°F when pets present</td></tr>
+      <tr><td>Ursa Minor sleeping area</td><td>BT sensor (camper top)</td><td>Below 35°F, above 85°F</td></tr>
+      <tr><td>Refrigerator / cooler</td><td>BT probe (12V fridge)</td><td>Above 40°F (food safety)</td></tr>
+      <tr><td>Aux battery compartment</td><td>BT sensor</td><td>Above 100°F (battery safety)</td></tr>
+      <tr><td>Water tank</td><td>BT probe</td><td>Below 32°F (freeze risk)</td></tr>
+    </tbody></table></div>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header"><div class="feature-title">Humidity Monitor</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-both">🟢 Both</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">Track humidity in the Ursa Minor sleeping area and cabin. High humidity alerts prevent condensation damage to camera gear and electronics. Low humidity tracking relevant in desert environments for occupant comfort and tent seam integrity.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>Alert: cabin humidity above 80% (condensation risk for camera gear)</li>
+      <li>Alert: sleeping area humidity above 85% overnight (comfort + mold risk)</li>
+      <li>Historical log: humidity trends per trip for long-term build health monitoring</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header"><div class="feature-title">EcoFlow Battery Dashboard</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">Full integration with EcoFlow power stations (Delta, Delta Pro, Delta Max, River series) via EcoFlow API and Bluetooth. Real-time and historical visibility into every aspect of your power system.</p>
+    <div class="table-wrap" style="margin-top:12px;"><table><thead><tr><th>Data point</th><th>Details</th></tr></thead><tbody>
+      <tr><td>State of charge</td><td>% remaining, estimated Wh remaining</td></tr>
+      <tr><td>Current draw</td><td>Total output watts, per-port breakdown</td></tr>
+      <tr><td>Charge rate</td><td>Solar input W, AC input W, DC car charge W</td></tr>
+      <tr><td>Time remaining</td><td>Hours at current draw rate, hours to full charge</td></tr>
+      <tr><td>Battery temperature</td><td>Cell temp — alert if too hot or too cold for charging</td></tr>
+      <tr><td>Cycle count</td><td>Total charge cycles — battery health indicator</td></tr>
+      <tr><td>Port status</td><td>Which AC/DC/USB ports are active, load per port</td></tr>
+    </tbody></table></div>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>Alerts: low battery (20% / 10%), overload, over-temp charging</li>
+      <li>Smart load recommendations: "At current draw, battery depletes by 3am — consider turning off the fridge overnight"</li>
+      <li>Historical logs: energy usage per trip for system sizing decisions</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header"><div class="feature-title">Lighting Control</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-both">🟢 Both</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">Control and manage lighting throughout the vehicle from a single Chomp interface. Supports Bluetooth and Wi-Fi controlled lights — interior ambient, exterior rock lights, camp lights, and accent lighting. Scene presets for common situations.</p>
+    <div class="table-wrap" style="margin-top:12px;"><table><thead><tr><th>Zone</th><th>Protocol</th><th>Control</th></tr></thead><tbody>
+      <tr><td>Interior ambient (Ursa Minor)</td><td>Bluetooth (Govee / WLED)</td><td>On/off, brightness, color temp</td></tr>
+      <tr><td>Cabin dome / accent</td><td>Bluetooth / 12V relay</td><td>On/off, dimmer</td></tr>
+      <tr><td>Exterior rock lights</td><td>Bluetooth (Rigid / Baja)</td><td>On/off, color (RGBW)</td></tr>
+      <tr><td>Camp floodlights</td><td>Wi-Fi (Govee / Wiz)</td><td>On/off, brightness, color temp, schedule</td></tr>
+      <tr><td>Bed area reading light</td><td>Bluetooth</td><td>On/off, dimmer, warm/cool</td></tr>
+    </tbody></table></div>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li><strong>Scene presets:</strong> Arrive at camp, Cooking, Stargazing (all off), Photography (no lights), Wake up, Depart</li>
+      <li><strong>Automation:</strong> Auto-on at sunset, auto-off at bedtime, motion-triggered exterior lights</li>
+      <li><strong>Battery awareness:</strong> Dim all lights when EcoFlow drops below 30%</li>
+      <li><strong>Supported protocols:</strong> Bluetooth LE, Wi-Fi (local API), WLED, Home Assistant bridge</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header"><div class="feature-title">Telemetry Dashboard</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-both">🟢 Both</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">Single-screen overview of all telemetry — all temperature zones, battery status, active lights, and connectivity status. The Chomp cockpit. Configurable widget layout so you show what matters to you at a glance. Lock-screen widget available for quick checks without opening the app.</p>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header"><div class="feature-title">Telemetry Log &amp; History</div>
+      <div class="feature-badges"><span class="priority-p3">P3 — Nice to Have</span><span class="conn-both">🟢 Both</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">Historical charts of temperature, humidity, and battery data per trip. Useful for identifying patterns — which nights the fridge struggled, when battery typically hits 50%, which zone runs hottest on desert trips. Export as CSV for analysis.</p>
+  </div>
+</div>
+<div class="page" id="page-survival">
+  <h1>Survival &amp; Emergency</h1>
+  <p class="page-subtitle">AI-powered survival expert, SOS broadcasting, emergency contacts, and wilderness tactics. For when things go sideways.</p>
+
+  <div class="callout"><strong>Offline-first critical:</strong> Everything in this section is available without connectivity. The survival AI knowledge base is cached on-device. SOS uses satellite communicator hardware, not cellular. This section works when nothing else does.</div>
+
+  <div class="feature">
+    <div class="feature-header"><div class="feature-title">SOS Broadcast</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span><span class="tier-free">FREE</span></div>
+    </div>
+    <p class="feature-desc">One-tap SOS blast to your pre-configured contact list — simultaneous push notification, SMS, email, and satellite message (via inReach / SPOT / Zoleo if connected). Message includes your current GPS coordinates, vehicle description, party size, and a brief situation field you fill in before sending.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>Configurable contact list: family, trip partners, local SAR number</li>
+      <li>Auto-populated SOS message: GPS, vehicle, party, last known waypoint</li>
+      <li>Situation field: 140-char free text ("vehicle recovery needed", "medical", "lost")</li>
+      <li>Confirmation screen before sending — prevents accidental trigger</li>
+      <li>Satellite relay: if inReach is connected, SOS goes via satellite even with zero cellular</li>
+      <li>Cancel window: 30-second countdown with cancel option after confirmation</li>
+      <li>Copy sent to your own email as a record</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header"><div class="feature-title">Survival Expert AI</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-both">🟢 Both</span><span class="tier-pro">PRO</span></div>
+    </div>
+    <p class="feature-desc">A Claude-powered survival and wilderness tactics agent with deep knowledge of backcountry emergency response, first aid, vehicle recovery, navigation, shelter, water, and fire. Knowledge base cached on-device for offline use. Context-aware — it knows your location, season, weather, and gear from your Chomp profile.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li><strong>Emergency response:</strong> "Someone in my group has a suspected broken leg — what do I do?"</li>
+      <li><strong>Vehicle recovery:</strong> "I'm high-centered on a rock, I have MaxTrax and a hi-lift — walk me through recovery"</li>
+      <li><strong>Navigation:</strong> "I've lost GPS signal and my phone is dying — how do I navigate back to the trailhead?"</li>
+      <li><strong>Shelter:</strong> "It's dropping to 15°F tonight and my sleeping bag is rated to 30°F — what do I do?"</li>
+      <li><strong>Water:</strong> "I'm running low on water — what are my options at this GPS location?"</li>
+      <li><strong>Fire:</strong> "How do I start a fire in wet PNW conditions with limited kit?"</li>
+      <li><strong>Wildlife:</strong> "Bear entered camp — what are the steps to take right now?"</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header"><div class="feature-title">Wilderness Tactics Library</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-off">🔵 Off-grid</span><span class="tier-free">FREE</span></div>
+    </div>
+    <p class="feature-desc">Curated, offline-cached reference cards for survival tactics, hacks, and emergency procedures. Written by wilderness medicine and survival professionals. Browsable without AI — pure reference when you need fast answers without typing a question.</p>
+    <div class="table-wrap" style="margin-top:12px;"><table><thead><tr><th>Category</th><th>Topics</th></tr></thead><tbody>
+      <tr><td>Medical</td><td>Wound care, hypothermia, hyperthermia, altitude sickness, anaphylaxis, splinting</td></tr>
+      <tr><td>Vehicle recovery</td><td>High-center, mud, sand, water crossing gone wrong, rollover</td></tr>
+      <tr><td>Navigation</td><td>Dead reckoning, star navigation, map and compass without GPS, terrain association</td></tr>
+      <tr><td>Fire</td><td>Wet conditions, no lighter, signal fire, fire in snow, fire safety and suppression</td></tr>
+      <tr><td>Shelter</td><td>Debris shelter, vehicle bivouac, tarp rigging, cold ground insulation</td></tr>
+      <tr><td>Water</td><td>Finding, collecting, filtering, chemical treatment, boiling at elevation</td></tr>
+      <tr><td>Wildlife</td><td>Bear, cougar, rattlesnake, wasp nest, tick removal, Giardia prevention</td></tr>
+      <tr><td>Signaling</td><td>Mirror, whistle, ground-to-air signals, inReach SOS, phone in dead zones</td></tr>
+      <tr><td>Hacks &amp; improvisation</td><td>Duct tape repairs, zip tie field fixes, tarp uses, improvised tools, vehicle fluids as fire starters</td></tr>
+    </tbody></table></div>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header"><div class="feature-title">Vendor &amp; Emergency Contacts</div>
+      <div class="feature-badges"><span class="priority-p1">P1 — Core</span><span class="conn-off">🔵 Off-grid</span><span class="tier-free">FREE</span></div>
+    </div>
+    <p class="feature-desc">Store critical vendor and emergency contacts for every piece of gear and every situation. Pre-populated with common PNW resources. Fully editable and cached offline.</p>
+    <div class="table-wrap" style="margin-top:12px;"><table><thead><tr><th>Category</th><th>Examples</th></tr></thead><tbody>
+      <tr><td>Search &amp; rescue</td><td>County SAR numbers for each planned trip area (auto-suggested from GPS)</td></tr>
+      <tr><td>Towing &amp; recovery</td><td>Local tow companies per region, off-road recovery specialists</td></tr>
+      <tr><td>Medical</td><td>Nearest hospital per trip area, GEOS / Global Rescue activation</td></tr>
+      <tr><td>Gear manufacturers</td><td>Garmin inReach support, Starlink customer care, EcoFlow support, Peplink support</td></tr>
+      <tr><td>Vehicle</td><td>Jeep roadside (800-521-2779), tire service, AAA</td></tr>
+      <tr><td>Fuel &amp; propane</td><td>Nearest propane fill per trip area, fuel delivery services</td></tr>
+      <tr><td>Permits &amp; access</td><td>USFS ranger district numbers, BLM field office, WDFW enforcement</td></tr>
+    </tbody></table></div>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>Trip-aware: surface the relevant county SAR number for your current GPS position automatically</li>
+      <li>One-tap call from the contact card</li>
+      <li>Shared across household — both users have the same contact list</li>
+    </ul>
+  </div>
+
+  <div class="feature">
+    <div class="feature-header"><div class="feature-title">Emergency Action Plans</div>
+      <div class="feature-badges"><span class="priority-p2">P2 — High Value</span><span class="conn-off">🔵 Off-grid</span><span class="tier-free">FREE</span></div>
+    </div>
+    <p class="feature-desc">Pre-written step-by-step action plans for the most likely emergencies in PNW overlanding. Read offline, no AI needed. Each plan is a 1-page card designed to be readable under stress.</p>
+    <ul style="font-size:14px;color:var(--muted);margin-top:10px;">
+      <li>Vehicle fire (engine, electrical, camp stove)</li>
+      <li>Wildfire approaching camp — evacuation sequence</li>
+      <li>Medical emergency — who to call, what to say, what to do while waiting</li>
+      <li>Vehicle rollover — immediate response and securing the scene</li>
+      <li>Water crossing gone wrong — vehicle recovery and occupant safety</li>
+      <li>Person missing from group — search protocol before calling SAR</li>
+    </ul>
+  </div>
+</div>
 <div class="page" id="page-community">
   <h1>Community</h1>
   <p class="page-subtitle">Trail knowledge from the PNW overlanding community.</p>
@@ -1912,7 +2391,7 @@ Submitted by: [Username]</pre>
 </main>
 
 <script>
-const pages = ['home','trip','safety','gear','maintenance','meals','media','fishing','architecture','users','pets','social','monetization','comms','docs','knowledge','campbot','community'];
+const pages = ['home','trip','safety','gear','fishing','maintenance','meals','media','telemetry','architecture','users','pets','badges','tripgroups','reservations','social','monetization','comms','docs','knowledge','campbot','survival','community'];
 
 function showPage(id) {
   pages.forEach(p => {
@@ -2014,6 +2493,28 @@ const index = [
   {page:'campbot', title:'Flexible Date Matching', section:'Campsite Bot', text:'flexible dates Friday Saturday any window consecutive nights filter'},
   {page:'campbot', title:'Campground Intelligence', section:'Campsite Bot', text:'cancellation patterns booking window opening time peak season prediction'},
   {page:'campbot', title:'Custom URL Watcher', section:'Campsite Bot', text:'custom URL monitor page change permit lottery private campground'},
+  {page:'badges', title:'Trail Badges', section:'Badges & Recognition', text:'badge trail GPS verified summit winter warrior fire season century club'},
+  {page:'badges', title:'Gear & Skill Badges', section:'Badges & Recognition', text:'badge wrench monkey golden hour catch release aerial artist builder camp chef'},
+  {page:'badges', title:'Community Badges', section:'Badges & Recognition', text:'badge scout camphost good samaritan map maker trail report'},
+  {page:'badges', title:'Public Profile', section:'Badges & Recognition', text:'public profile badge wall trip stats rig showcase shareable URL'},
+  {page:'tripgroups', title:'Trip Partner Invite', section:'Trip Groups', text:'trip partner invite co-pilot navigator follower shared trip'},
+  {page:'tripgroups', title:'Spontaneous Trip Groups', section:'Trip Groups', text:'trip group spontaneous join link convoy discord instagram'},
+  {page:'tripgroups', title:'Live Convoy Tracking', section:'Trip Groups', text:'convoy tracking live GPS sweep vehicle partner location'},
+  {page:'tripgroups', title:'Group Safety Check-In', section:'Trip Groups', text:'check-in group safety satellite missed alert'},
+  {page:'reservations', title:'Reservation Wallet', section:'Reservations', text:'campsite hotel airbnb confirmation number check-in offline'},
+  {page:'reservations', title:'Trip Itinerary Builder', section:'Reservations', text:'itinerary day by day driving segments accommodation'},
+  {page:'reservations', title:'Confirmation Email Import', section:'Reservations', text:'email import parse confirmation Recreation.gov Hipcamp Airbnb'},
+  {page:'telemetry', title:'Temperature Zone Monitor', section:'Vehicle Telemetry', text:'temperature zones outside cabin ursa minor fridge battery water tank bluetooth sensor'},
+  {page:'telemetry', title:'EcoFlow Battery Dashboard', section:'Vehicle Telemetry', text:'EcoFlow battery charge state draw solar wh remaining port temperature cycles'},
+  {page:'telemetry', title:'Lighting Control', section:'Vehicle Telemetry', text:'lighting bluetooth wifi rock lights camp flood interior WLED Govee scene preset'},
+  {page:'telemetry', title:'Telemetry Dashboard', section:'Vehicle Telemetry', text:'telemetry dashboard overview cockpit widget lock screen'},
+  {page:'survival', title:'SOS Broadcast', section:'Survival & Emergency', text:'SOS blast contacts satellite GPS coordinates inReach emergency'},
+  {page:'survival', title:'Survival Expert AI', section:'Survival & Emergency', text:'survival AI Claude wilderness first aid recovery navigation shelter water fire wildlife'},
+  {page:'survival', title:'Wilderness Tactics Library', section:'Survival & Emergency', text:'survival tactics hacks reference cards offline medical shelter water fire navigation wildlife signaling'},
+  {page:'survival', title:'Vendor & Emergency Contacts', section:'Survival & Emergency', text:'SAR towing recovery starlink EcoFlow Garmin inReach vendor emergency contacts'},
+  {page:'survival', title:'Emergency Action Plans', section:'Survival & Emergency', text:'emergency action plan vehicle fire wildfire medical rollover water crossing missing person'},
+  {page:'safety', title:'Private Land Boundary Alert', section:'Safety & Conditions', text:'private land boundary alert trespass PAD-US BLM OnX GPS proximity warning PNW checkerboard'},
+  {page:'safety', title:'Private Land Boundary Alert', section:'Safety & Conditions', text:'private land boundary alert trespass PAD-US BLM OnX GPS proximity warning PNW checkerboard posted land'},
   {page:'community', title:'Trail Report Template', section:'Community', text:'trail report condition campsite water signal PNW overlanding'},
 ];
 
@@ -2047,6 +2548,106 @@ function closeSidebar() {
   document.getElementById('sidebar').classList.remove('open');
   document.getElementById('overlay').classList.remove('active');
 }
+
+// ── THEME SYSTEM ──
+const defaultTheme = {
+  accent: '#f97316',
+  bg: '#f9f9f9',
+  sidebar: '#111111',
+  logoText: 'CHOMP.'
+};
+
+function applyTheme(t) {
+  const root = document.documentElement;
+  root.style.setProperty('--ember', t.accent);
+  root.style.setProperty('--moss', t.accent);
+  root.style.setProperty('--forest', t.sidebar);
+  root.style.setProperty('--forest-mid', t.sidebar === '#111111' ? '#1e1e1e' : adjustColor(t.sidebar, 20));
+  root.style.setProperty('--cream', t.bg);
+  root.style.setProperty('--sand', adjustColor(t.bg, -8));
+  document.getElementById('logoText').textContent = t.logoText || 'CHOMP.';
+  localStorage.setItem('chompTheme', JSON.stringify(t));
+}
+
+function adjustColor(hex, amount) {
+  const n = parseInt(hex.replace('#',''), 16);
+  const r = Math.min(255, Math.max(0, (n >> 16) + amount));
+  const g = Math.min(255, Math.max(0, ((n >> 8) & 0xff) + amount));
+  const b = Math.min(255, Math.max(0, (n & 0xff) + amount));
+  return '#' + [r,g,b].map(x => x.toString(16).padStart(2,'0')).join('');
+}
+
+const presets = [
+  { name:'Ember', accent:'#f97316', bg:'#f9f9f9', sidebar:'#111111' },
+  { name:'Arctic', accent:'#3b82f6', bg:'#f0f4ff', sidebar:'#0f1729' },
+  { name:'Forest', accent:'#22c55e', bg:'#f0faf2', sidebar:'#0d2918' },
+  { name:'Desert', accent:'#d97706', bg:'#fdf8f0', sidebar:'#2d1a00' },
+  { name:'Obsidian', accent:'#a855f7', bg:'#faf5ff', sidebar:'#1a0d2e' },
+  { name:'Steel', accent:'#94a3b8', bg:'#f8fafc', sidebar:'#1e293b' },
+];
+
+function buildThemePicker() {
+  const swatchHTML = presets.map((p,i) =>
+    `<div class="swatch${i===0?' active':''}" title="${p.name}" style="background:${p.accent}" onclick="applyPreset(${i})"></div>`
+  ).join('');
+  document.getElementById('themeSwatches').innerHTML = swatchHTML;
+  const saved = localStorage.getItem('chompTheme');
+  if (saved) { try { applyTheme(JSON.parse(saved)); } catch(e){} }
+}
+
+function applyPreset(i) {
+  const p = presets[i];
+  const t = { ...p, logoText: document.getElementById('logoInput').value || 'CHOMP.' };
+  applyTheme(t);
+  document.getElementById('accentPicker').value = p.accent;
+  document.getElementById('bgPicker').value = p.bg;
+  document.getElementById('sidebarPicker').value = p.sidebar;
+  document.querySelectorAll('.swatch').forEach((s,j) => s.classList.toggle('active', j===i));
+}
+
+function getTheme() {
+  return {
+    accent: document.getElementById('accentPicker').value,
+    bg: document.getElementById('bgPicker').value,
+    sidebar: document.getElementById('sidebarPicker').value,
+    logoText: document.getElementById('logoInput').value || 'CHOMP.'
+  };
+}
+
+function toggleThemePanel() {
+  document.getElementById('themePanel').classList.toggle('open');
+}
+
+window.addEventListener('load', buildThemePicker);
+
 </script>
+
+<div class="theme-picker">
+  <div class="theme-btn" onclick="toggleThemePanel()" title="Customize theme">palette</div>
+  <div class="theme-panel" id="themePanel">
+    <h4>APPEARANCE</h4>
+    <div class="theme-logo-row">
+      <label style="font-family:'Ubuntu Mono',monospace;font-size:11px;color:#888;">App name</label>
+      <input type="text" id="logoInput" placeholder="CHOMP." maxlength="12" oninput="applyTheme(getTheme())">
+    </div>
+    <h4 style="margin-top:8px;">PRESETS</h4>
+    <div class="theme-swatches" id="themeSwatches"></div>
+    <h4>CUSTOM</h4>
+    <div class="theme-row">
+      <label>Accent</label>
+      <input type="color" id="accentPicker" value="#f97316" oninput="applyTheme(getTheme())">
+    </div>
+    <div class="theme-row">
+      <label>Background</label>
+      <input type="color" id="bgPicker" value="#f9f9f9" oninput="applyTheme(getTheme())">
+    </div>
+    <div class="theme-row">
+      <label>Sidebar</label>
+      <input type="color" id="sidebarPicker" value="#111111" oninput="applyTheme(getTheme())">
+    </div>
+    <span class="theme-reset" onclick="applyPreset(0);document.getElementById('logoInput').value='';">Reset to default</span>
+  </div>
+</div>
+
 </body>
 </html>
